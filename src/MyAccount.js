@@ -1,3 +1,8 @@
+import ChangeAddress from "./ChangeAddress";
+import ChangeEmail from "./ChangeEmail";
+import ChangeName from "./ChangeName";
+import ChangePassword from "./ChangePassword";
+
 function MyAccount() {
   return (
     <div className="container mt-5">
@@ -43,112 +48,10 @@ function MyAccount() {
           </button>
         </div>
         <div className="col-4">
-          <form className="mb-5">
-            <div className="mb-3">
-              <label for="current_password" className="form-label">
-                Current Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="current_password"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="new_password" className="form-label">
-                New Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="new_password"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="confirm_new_password" className="form-label">
-                Confirm New Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="confirm_new_password"
-              />
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-          </form>
-          <form className="mb-5">
-            <div className="mb-3">
-              <label for="first_name" className="form-label">
-                First name
-              </label>
-              <input type="text" className="form-control" id="first_name" />
-            </div>
-            <div className="mb-3">
-              <label for="last_name" className="form-label">
-                Last name
-              </label>
-              <input type="text" className="form-control" id="last_name" />
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-          </form>
-          <form className="mb-5">
-            <div className="mb-3">
-              <label for="city" className="form-label">
-                City
-              </label>
-              <input type="text" className="form-control" id="city" />
-            </div>
-            <div className="mb-3">
-              <label for="address" className="form-label">
-                Address
-              </label>
-              <input type="text" className="form-control" id="address" />
-            </div>
-            <div className="mb-3">
-              <label for="zipcode" className="form-label">
-                Zipcode
-              </label>
-              <input type="text" className="form-control" id="zipcode" />
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-          </form>
-          <form className="mb-5">
-            <div className="mb-3">
-              <label for="current_email" className="form-label">
-                Current Email
-              </label>
-              <input type="email" className="form-control" id="current_email" />
-            </div>
-            <div className="mb-3">
-              <label for="new_email" className="form-label">
-                New Email
-              </label>
-              <input type="email" className="form-control" id="new_email" />
-            </div>
-            <div className="mb-3">
-              <label for="confirm_new_email" className="form-label">
-                Confirm New Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="confirm_new_email"
-              />
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-          </form>
+          <ChangePassword />
+          <ChangeAddress />
+          <ChangeName />
+          <ChangeEmail />
         </div>
       </div>
     </div>
