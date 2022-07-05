@@ -1,0 +1,13 @@
+.wishlistIcon {
+  width: 40px;
+}
+.wishlistIconContainer:hover {
+  background: rgba(115, 115, 115, 0.4);
+  border-radius: 25px;
+  cursor: pointer;
+}
+.wishlistIconContainer {
+  margin-left: 10px;
+  text-align: center;
+  padding: 7px;
+}
