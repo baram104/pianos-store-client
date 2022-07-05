@@ -1,4 +1,3 @@
-import styles from "./ProductDetails.module.css";
 function ProductDetails() {
   return (
     <div className="d-flex flex-column min-vh-100">
