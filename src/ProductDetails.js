@@ -1,6 +1,6 @@
 import ProductButtonGroup from "./ProductButtonGroup";
 
-function ProductDetails() {
+function ProductDetails(props) {
   return (
     <section className="container">
       <div className="card mt-3">
@@ -22,7 +22,10 @@ function ProductDetails() {
                   <small className="card-text">19$</small>
                 </p>
               </div>
-              <ProductButtonGroup />
+              <ProductButtonGroup
+                isOnWishList={props.isOnWishList}
+                isOutOfStock={props.isOutOfStock}
+              />
             </div>
           </div>
         </div>
