@@ -1,7 +1,7 @@
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "./ProductDetails/ProductDetails";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import MyAccount from "./MyAccount";
+import MyAccount from "./MyAccount/MyAccount";
 
 function App() {
   return (
