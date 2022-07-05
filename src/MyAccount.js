@@ -2,6 +2,7 @@ import ChangeAddress from "./ChangeAddress";
 import ChangeEmail from "./ChangeEmail";
 import ChangeName from "./ChangeName";
 import ChangePassword from "./ChangePassword";
+import MyWishList from "./MyWishList";
 
 function MyAccount() {
   return (
@@ -53,6 +54,7 @@ function MyAccount() {
           <ChangeName />
           <ChangeEmail />
         </div>
+        <MyWishList />
       </div>
     </div>
   );
