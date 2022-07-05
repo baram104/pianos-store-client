@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <ProductDetails />
+      <ProductDetails isOnWishList={false} isOutOfStock={false} />
       <MyAccount />
       <Footer />
     </div>

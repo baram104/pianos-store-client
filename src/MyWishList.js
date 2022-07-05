@@ -3,11 +3,11 @@ import ProductDetails from "./ProductDetails";
 export default function MyWishList() {
   return (
     <div className="container">
-      <ProductDetails />
-      <ProductDetails />
-      <ProductDetails />
-      <ProductDetails />
-      <ProductDetails />
+      <ProductDetails isOnWishList={true} isOutOfStock={true} />
+      <ProductDetails isOnWishList={true} isOutOfStock={false} />
+      <ProductDetails isOnWishList={true} isOutOfStock={true} />
+      <ProductDetails isOnWishList={true} isOutOfStock={false} />
+      <ProductDetails isOnWishList={true} isOutOfStock={true} />
     </div>
   );
 }
