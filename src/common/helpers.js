@@ -5,26 +5,24 @@ export const validateAndUpdateInput = (input, value, form) => {
 
   if (currInput.validations.required) {
     if (value.length < 1) {
-      currInput.errors.push({
-        name: "required",
-        value: `${input} is required`,
-      });
+      currInput.errors.push(`${currInput.title} is required`);
     }
   }
   if (currInput.validations.pattern) {
     if (!value.match(currInput.validations.pattern)) {
-      currInput.errors.push({
-        name: "invalid",
-        value: `${input} is invalid`,
-      });
+      currInput.errors.push(`${currInput.title} is invalid`);
     }
   }
   if (currInput.validations.minLength) {
     if (value.length < currInput.validations.minLength) {
-      currInput.errors.push({
-        name: "minLength",
-        value: `${input} must be at least ${currInput.validations.minLength} characters`,
-      });
+      currInput.errors.push(
+        `${currInput.title} must be at least ${currInput.validations.minLength} characters`
+      );
+    }
+  }
+  if (currInput.validations.compare) {
+    if (value !== form[currInput.validations.compare].value) {
+      currInput.errors.push(`${currInput.title} doesn't match`);
     }
   }
 };
