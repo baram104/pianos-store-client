@@ -12,7 +12,6 @@ export default function LoginForm(props) {
       value: "",
       validations: {
         required: true,
-        minLength: 2,
       },
       errors: [],
     },
@@ -20,9 +19,6 @@ export default function LoginForm(props) {
       value: "",
       validations: {
         required: true,
-        pattern:
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        minLength: 8,
       },
       errors: [],
     },
