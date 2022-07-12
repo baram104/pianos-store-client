@@ -67,6 +67,23 @@ export default function FormComp(props) {
           </Button>
         </Col>
       </Row>
+      <Row className="mb-3 justify-content-between">
+        <Col>
+          {props.formTitle === "Sign Up" ? (
+            <a href="">Already registered? Sign in</a>
+          ) : (
+            ""
+          )}
+          {props.formTitle === "Sign In" ? (
+            <a href="">Don't have an acount yet? Sign Up</a>
+          ) : (
+            ""
+          )}
+        </Col>
+        <Col className="text-end">
+          {props.formTitle === "Sign In" ? <a href="">Forgot password?</a> : ""}
+        </Col>
+      </Row>
     </Form>
   );
 }

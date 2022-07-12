@@ -3,59 +3,46 @@ import ChangeEmail from "./ChangeEmail";
 import ChangeName from "./ChangeName";
 import ChangePassword from "./ChangePassword";
 import MyWishList from "./MyWishList";
+import FormComp from "../FormComp";
+import { formInputs } from "../data/formInputsData";
+import Col from "react-bootstrap/esm/Col";
+import Row from "react-bootstrap/esm/Row";
 
 function MyAccount() {
-  return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-3">
-          <p className="fs-3">Hello, Bar</p>
-          <div className="dropdown">
-            <button
-              className="btn"
-              type="button"
-              id="dropdownMenuButton2"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <p className="fs-4">Change Details</p>
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a href="#" className="dropdown-item">
-                  Change Password
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Change Name
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Change Address
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Change Email
-                </a>
-              </li>
-            </ul>
-          </div>
+  const changePasswordForm = {
+    oldPassword: formInputs.oldPassword,
+    newPassword: { ...formInputs.passwordRegistration, title: "New Password" },
+    confirmPassword: formInputs.confirmPassword,
+  };
 
-          <button className="btn mt-2">
-            <p className="fs-4">My wishlist</p>
-          </button>
+  return (
+    <div className="container mt-5 text-primary">
+      <Row>
+        <div className="col-3">
+          <Col>
+            <p className="fs-3">Hello, Bar</p>
+          </Col>
+          <Col>
+            <button className="btn" type="button">
+              <p className="fs-4 text-primary">Change Details</p>
+            </button>
+          </Col>
+          <Col>
+            <button className="btn mt-2">
+              <p className="fs-4">My wishlist</p>
+            </button>
+          </Col>
         </div>
-        <div className="col-4">
-          <ChangePassword />
-          <ChangeAddress />
-          <ChangeName />
-          <ChangeEmail />
-        </div>
-        <MyWishList />
-      </div>
+        <Col>
+          <FormComp
+            formTitle="Change Password"
+            handleFormDetails={() => {}}
+            formInputs={changePasswordForm}
+          />
+        </Col>
+      </Row>
+
+      {/* <MyWishList /> */}
     </div>
   );
 }
