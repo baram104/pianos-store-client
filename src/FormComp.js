@@ -18,16 +18,16 @@ export default function FormComp(props) {
     event.preventDefault();
 
     let isFormValid = true;
-    const loginDetails = [];
+    const formDetails = [];
 
     for (const input in form) {
       validateAndUpdateInput(input, form[input].value, form);
-      loginDetails.push({ input, value: form[input].value });
+      formDetails.push({ input, value: form[input].value });
       if (form[input].errors.length) isFormValid = false;
     }
     setForm({ ...form });
     if (isFormValid) {
-      props.handleLoginDetails(loginDetails);
+      props.handleFormDetails(formDetails);
     }
   };
 
@@ -52,7 +52,7 @@ export default function FormComp(props) {
               />
               {inputObj.errors.map((error, errorIdx) => (
                 <Form.Control.Feedback key={errorIdx} type="invalid">
-                  {error.value}
+                  {error}
                 </Form.Control.Feedback>
               ))}
             </Form.Group>

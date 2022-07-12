@@ -3,10 +3,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import MyAccount from "./MyAccount/MyAccount";
 import FormComp from "./FormComp";
-import { loginFormInputs } from "./data/formInputsData";
+import { loginFormInputs, signUpFormInputs } from "./data/formInputsData";
 
 function App() {
-  const handleLoginDetails = (details) => {
+  const handleFormDetails = (details) => {
     console.log(details);
   };
 
@@ -17,8 +17,13 @@ function App() {
       {/* <MyAccount /> */}
       <FormComp
         formTitle="Sign In"
-        handleLoginDetails={handleLoginDetails}
+        handleFormDetails={handleFormDetails}
         formInputs={loginFormInputs}
+      />
+      <FormComp
+        formTitle="Sign Up"
+        handleFormDetails={handleFormDetails}
+        formInputs={signUpFormInputs}
       />
       <Footer />
     </div>
