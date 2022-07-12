@@ -5,12 +5,16 @@ import MyAccount from "./MyAccount/MyAccount";
 import LoginForm from "./LoginForm";
 
 function App() {
+  const handleLoginDetails = (details) => {
+    console.log(details);
+  };
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
       {/* <ProductDetails isOnWishList={false} isOutOfStock={false} /> */}
       {/* <MyAccount /> */}
-      <LoginForm />
+      <LoginForm handleLoginDetails={handleLoginDetails} />
       <Footer />
     </div>
   );
