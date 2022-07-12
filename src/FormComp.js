@@ -1,36 +1,17 @@
 import { Form } from "react-bootstrap";
-import "./LoginForm.css";
+import "./FormComp.css";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
 import { validateAndUpdateInput } from "./common/helpers";
 
-export default function LoginForm(props) {
-  const [loginForm, setLoginForm] = useState({
-    username: {
-      title: "Username",
-      value: "",
-      validations: {
-        required: true,
-      },
-      type: "text",
-      errors: [],
-    },
-    password: {
-      title: "Password",
-      value: "",
-      validations: {
-        required: true,
-      },
-      type: "password",
-      errors: [],
-    },
-  });
+export default function FormComp(props) {
+  const [form, setForm] = useState(props.formInputs);
 
   const onValidateHandler = ({ target: { name, value } }) => {
-    validateAndUpdateInput(name, value, loginForm);
-    setLoginForm({ ...loginForm });
+    validateAndUpdateInput(name, value, form);
+    setForm({ ...form });
   };
 
   const handleSubmit = (event) => {
@@ -39,12 +20,12 @@ export default function LoginForm(props) {
     let isFormValid = true;
     const loginDetails = [];
 
-    for (const input in loginForm) {
-      validateAndUpdateInput(input, loginForm[input].value, loginForm);
-      loginDetails.push({ input, value: loginForm[input].value });
-      if (loginForm[input].errors.length) isFormValid = false;
+    for (const input in form) {
+      validateAndUpdateInput(input, form[input].value, form);
+      loginDetails.push({ input, value: form[input].value });
+      if (form[input].errors.length) isFormValid = false;
     }
-    setLoginForm({ ...loginForm });
+    setForm({ ...form });
     if (isFormValid) {
       props.handleLoginDetails(loginDetails);
     }
@@ -53,10 +34,10 @@ export default function LoginForm(props) {
   return (
     <Form className="container w-50 mt-5 card" onSubmit={handleSubmit}>
       <Row>
-        <h2 className="text-primary">Sign In</h2>
+        <h2 className="text-primary">{props.formTitle}</h2>
         <div className="line"></div>
       </Row>
-      {Object.entries(loginForm).map(([input, inputObj], idx) => {
+      {Object.entries(form).map(([input, inputObj], idx) => {
         return (
           <Row key={idx}>
             <Form.Group>

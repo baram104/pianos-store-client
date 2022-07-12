@@ -2,7 +2,8 @@ import ProductDetails from "./ProductDetails/ProductDetails";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import MyAccount from "./MyAccount/MyAccount";
-import LoginForm from "./LoginForm";
+import FormComp from "./FormComp";
+import { loginFormInputs } from "./data/formInputsData";
 
 function App() {
   const handleLoginDetails = (details) => {
@@ -14,7 +15,11 @@ function App() {
       <Navbar />
       {/* <ProductDetails isOnWishList={false} isOutOfStock={false} /> */}
       {/* <MyAccount /> */}
-      <LoginForm handleLoginDetails={handleLoginDetails} />
+      <FormComp
+        formTitle="Sign In"
+        handleLoginDetails={handleLoginDetails}
+        formInputs={loginFormInputs}
+      />
       <Footer />
     </div>
   );
