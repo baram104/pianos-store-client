@@ -1,4 +1,4 @@
-export const loginFormInputs = {
+export const formInputs = {
   username: {
     title: "Username",
     value: "",
@@ -17,9 +17,6 @@ export const loginFormInputs = {
     type: "password",
     errors: [],
   },
-};
-
-export const signUpFormInputs = {
   email: {
     title: "Email",
     value: "",
@@ -30,7 +27,7 @@ export const signUpFormInputs = {
     type: "email",
     errors: [],
   },
-  username: {
+  usernameRegistration: {
     title: "Username",
     value: "",
     validations: {
@@ -40,7 +37,7 @@ export const signUpFormInputs = {
     type: "text",
     errors: [],
   },
-  password: {
+  passwordRegistration: {
     title: "Password",
     value: "",
     validations: {
@@ -56,9 +53,40 @@ export const signUpFormInputs = {
     value: "",
     validations: {
       required: true,
-      compare: "password",
+      compare: "passwordRegistration",
     },
     type: "password",
+    errors: [],
+  },
+  oldPassword: {
+    title: "Old Password",
+    value: "",
+    validations: {
+      required: true,
+    },
+    type: "password",
+    errors: [],
+  },
+  firstName: {
+    title: "First Name",
+    value: "",
+    validations: {
+      required: true,
+      pattern: /(^[A-Za-z]+$)/,
+      minLength: 3,
+    },
+    type: "text",
+    errors: [],
+  },
+  lastName: {
+    title: "Last Name",
+    value: "",
+    validations: {
+      required: true,
+      pattern: /(^[A-Za-z]+$)/,
+      minLength: 3,
+    },
+    type: "text",
     errors: [],
   },
 };
