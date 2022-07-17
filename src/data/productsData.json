@@ -7,6 +7,7 @@
     "price": 900,
     "quantity": 5,
     "addedOn": "20.12.2022",
+    "isPopular": true,
     "imgSrc": "https://peimot.com/Cat_471170_15243.png",
     "imgAlt": "Yamaha p-115",
     "imgTitle": "Yamaha p-115"
@@ -19,6 +20,7 @@
     "price": 500,
     "quantity": 7,
     "addedOn": "21.09.2022",
+    "isPopular": true,
     "imgSrc": "https://d3m9l0v76dty0.cloudfront.net/system/photos/6831051/large/0f05e9ad6be55e86ce8ce9d168ce3194.jpg",
     "imgAlt": "Yamaha p-45",
     "imgTitle": "Yamaha p-45"
@@ -31,6 +33,7 @@
     "price": 5000,
     "quantity": 7,
     "addedOn": "21.08.2022",
+    "isPopular": true,
     "imgSrc": "https://www.kley-zemer.co.il/Media/Uploads/na_steinway_v125_01(1).webp",
     "imgAlt": "Steinway & Sons Professional Model V-125 , Ebony",
     "imgTitle": "Steinway & Sons Professional Model V-125 , Ebony"
@@ -43,6 +46,7 @@
     "price": 4200,
     "quantity": 7,
     "addedOn": "21.07.2022",
+    "isPopular": true,
     "imgSrc": "https://www.kley-zemer.co.il/Media/Uploads/115M2-white(1).webp",
     "imgAlt": "Pearl River UP115M2 White HP",
     "imgTitle": "Pearl River UP115M2 White HP"
