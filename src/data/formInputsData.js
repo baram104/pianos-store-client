@@ -22,7 +22,10 @@ export const formInputs = {
     value: "",
     validations: {
       required: true,
-      pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+      patternObj: {
+        pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        errorMsg: "Email is incorrect",
+      },
     },
     type: "email",
     errors: [],
@@ -42,8 +45,12 @@ export const formInputs = {
     value: "",
     validations: {
       required: true,
-      minLength: 8,
-      pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      patternObj: {
+        pattern:
+          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        errorMsg:
+          "Password must be at least 8 characters long, must contain at least one special character, capital letter and a number",
+      },
     },
     type: "password",
     errors: [],
@@ -72,7 +79,10 @@ export const formInputs = {
     value: "",
     validations: {
       required: true,
-      pattern: /(^[A-Za-z]+$)/,
+      patternObj: {
+        pattern: /(^[A-Za-z]+$)/,
+        errorMsg: "First Name must contain only letters.",
+      },
       minLength: 3,
     },
     type: "text",
@@ -83,7 +93,10 @@ export const formInputs = {
     value: "",
     validations: {
       required: true,
-      pattern: /(^[A-Za-z]+$)/,
+      patternObj: {
+        pattern: /(^[A-Za-z]+$)/,
+        errorMsg: "Last Name must contain only letters.",
+      },
       minLength: 3,
     },
     type: "text",

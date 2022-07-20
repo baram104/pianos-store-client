@@ -8,9 +8,9 @@ export const validateAndUpdateInput = (input, value, form) => {
       currInput.errors.push(`${currInput.title} is required`);
     }
   }
-  if (currInput.validations.pattern) {
-    if (!value.match(currInput.validations.pattern)) {
-      currInput.errors.push(`${currInput.title} is invalid`);
+  if (currInput.validations.patternObj) {
+    if (!value.match(currInput.validations.patternObj.pattern)) {
+      currInput.errors.push(currInput.validations.patternObj.errorMsg);
     }
   }
   if (currInput.validations.minLength) {

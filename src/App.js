@@ -27,7 +27,7 @@ function App() {
       <Navbar />
       <ProductDetails id="1" isOnWishList={false} />
       {/* <MyAccount /> */}
-      {/* <FormComp
+      <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
         formInputs={loginFormInputs}
@@ -36,7 +36,7 @@ function App() {
         formTitle="Sign Up"
         handleFormDetails={handleFormDetails}
         formInputs={signUpFormInputs}
-      /> */}
+      />
       <Footer />
     </div>
   );
