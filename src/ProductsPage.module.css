@@ -1,0 +1,15 @@
+.wishlistIcon {
+  width: 30px;
+}
+.wishlistIconContainer:hover {
+  background: rgba(115, 115, 115, 0.4);
+  border-radius: 25px;
+  cursor: pointer;
+}
+.wishlistIconContainer {
+  text-align: center;
+  padding: 10px;
+}
+.cardImg {
+  min-height: 35vh;
+}

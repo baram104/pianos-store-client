@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import MyAccount from "./MyAccount/MyAccount";
 import FormComp from "./FormComp";
 import { formInputs } from "./data/formInputsData";
+import ProductsPage from "./ProductsPage";
 
 function App() {
   const handleFormDetails = (details) => {
@@ -25,9 +26,10 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <ProductDetails id="1" isOnWishList={false} />
+      <ProductsPage></ProductsPage>
+      {/* <ProductDetails id="1" isOnWishList={false} /> */}
       {/* <MyAccount /> */}
-      <FormComp
+      {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
         formInputs={loginFormInputs}
@@ -36,7 +38,7 @@ function App() {
         formTitle="Sign Up"
         handleFormDetails={handleFormDetails}
         formInputs={signUpFormInputs}
-      />
+      /> */}
       <Footer />
     </div>
   );
