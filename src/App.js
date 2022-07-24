@@ -1,5 +1,5 @@
 import ProductDetails from "./ProductDetails/ProductDetails";
-import Navbar from "./Navbar";
+import NavbarComp from "./NavbarComp";
 import Footer from "./Footer";
 import MyAccount from "./MyAccount/MyAccount";
 import FormComp from "./FormComp";
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar />
+      <NavbarComp />
       <ProductsPage></ProductsPage>
       {/* <ProductDetails id="1" isOnWishList={false} /> */}
       {/* <MyAccount /> */}

@@ -1,0 +1,6 @@
+.navbar a {
+  color: black;
+}
+.navbar a:hover {
+  color: white;
+}
