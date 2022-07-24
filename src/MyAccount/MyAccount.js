@@ -1,7 +1,3 @@
-import ChangeAddress from "./ChangeAddress";
-import ChangeEmail from "./ChangeEmail";
-import ChangeName from "./ChangeName";
-import ChangePassword from "./ChangePassword";
 import MyWishList from "./MyWishList";
 import FormComp from "../FormComp";
 import { formInputs } from "../data/formInputsData";
@@ -11,8 +7,20 @@ import Row from "react-bootstrap/esm/Row";
 function MyAccount() {
   const changePasswordForm = {
     oldPassword: formInputs.oldPassword,
-    newPassword: { ...formInputs.passwordRegistration, title: "New Password" },
+    passwordRegistration: {
+      ...formInputs.passwordRegistration,
+      title: "New Password",
+    },
     confirmPassword: formInputs.confirmPassword,
+  };
+  const changeNameForm = {
+    FirstName: formInputs.firstName,
+    lastName: formInputs.lastName,
+  };
+  const changeAddressForm = {
+    city: formInputs.city,
+    street: formInputs.street,
+    zipcode: formInputs.zipcode,
   };
 
   return (
@@ -28,8 +36,8 @@ function MyAccount() {
             </button>
           </Col>
           <Col>
-            <button className="btn mt-2">
-              <p className="fs-4">My wishlist</p>
+            <button className="btn mt-2" type="button">
+              <p className="fs-4 text-primary">My wishlist</p>
             </button>
           </Col>
         </div>
@@ -38,6 +46,16 @@ function MyAccount() {
             formTitle="Change Password"
             handleFormDetails={() => {}}
             formInputs={changePasswordForm}
+          />
+          <FormComp
+            formTitle="Change Name"
+            handleFormDetails={() => {}}
+            formInputs={changeNameForm}
+          />
+          <FormComp
+            formTitle="Change Address"
+            handleFormDetails={() => {}}
+            formInputs={changeAddressForm}
           />
         </Col>
       </Row>
