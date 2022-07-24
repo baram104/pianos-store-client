@@ -1,3 +1,4 @@
+import Badge from "react-bootstrap/Badge";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -38,6 +39,9 @@ function Navbar() {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#">
                 Cart
+                <Badge bg="secondary" className="mx-1">
+                  0
+                </Badge>
               </a>
             </li>
           </ul>
