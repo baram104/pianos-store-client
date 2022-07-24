@@ -19,18 +19,18 @@ export default function ProductsPage() {
     api.getPianos().then((data) => setPianos(data));
   }, []);
   return (
-    <Container fluid className="my-3">
+    <Container fluid className="my-3 align-items-baseline">
       <Row>
         <Col md={3}>
           <ListGroup>
-            <ListGroup.Item variant="secondary">Categories</ListGroup.Item>
+            <ListGroup.Item variant="primary">Categories</ListGroup.Item>
             <ListGroup.Item action>Electric Pianos</ListGroup.Item>
             <ListGroup.Item action>Acoustic Pianos</ListGroup.Item>
           </ListGroup>
         </Col>
 
         <Col md={9} className="px-5">
-          <Row>
+          <Row className="mt-0">
             <Col sm={3}>
               <Form.Select aria-label="Default select example">
                 <option>Sort by</option>
