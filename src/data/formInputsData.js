@@ -102,4 +102,46 @@ export const formInputs = {
     type: "text",
     errors: [],
   },
+  city: {
+    title: "City",
+    value: "",
+    validations: {
+      required: true,
+      patternObj: {
+        pattern: /(^[A-Za-z]+$)/,
+        errorMsg: "City must contain only letters.",
+      },
+      minLength: 3,
+    },
+    type: "text",
+    errors: [],
+  },
+  street: {
+    title: "Street",
+    value: "",
+    validations: {
+      required: true,
+      patternObj: {
+        pattern: /(^[A-Za-z1-9]+$)/,
+        errorMsg: "Street must contain only letters and numbers.",
+      },
+      minLength: 3,
+    },
+    type: "text",
+    errors: [],
+  },
+  zipcode: {
+    title: "Zipcode",
+    value: "",
+    validations: {
+      required: true,
+      patternObj: {
+        pattern: /(^[1-9]+$)/,
+        errorMsg:
+          "Zipcode must be at least 7 characters and must contain only numbers.",
+      },
+    },
+    type: "text",
+    errors: [],
+  },
 };

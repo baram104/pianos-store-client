@@ -26,9 +26,9 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />
-      <ProductsPage></ProductsPage>
+      {/* <ProductsPage></ProductsPage> */}
       {/* <ProductDetails id="1" isOnWishList={false} /> */}
-      {/* <MyAccount /> */}
+      <MyAccount />
       {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
