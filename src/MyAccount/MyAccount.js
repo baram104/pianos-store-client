@@ -18,11 +18,6 @@ function MyAccount() {
     FirstName: formInputs.firstName,
     lastName: formInputs.lastName,
   };
-  const changeAddressForm = {
-    city: formInputs.city,
-    street: formInputs.street,
-    zipcode: formInputs.zipcode,
-  };
 
   return (
     <div className="container-fluid container-lg mt-5 text-primary ">
@@ -55,11 +50,6 @@ function MyAccount() {
             formTitle="Change Name"
             handleFormDetails={() => {}}
             formInputs={changeNameForm}
-          />
-          <FormComp
-            formTitle="Change Address"
-            handleFormDetails={() => {}}
-            formInputs={changeAddressForm}
           />
         </Col>
       </Row>

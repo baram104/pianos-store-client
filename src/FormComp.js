@@ -62,9 +62,13 @@ export default function FormComp(props) {
 
       <Row className="my-5 justify-content-center">
         <Col md={4}>
-          <Button className="w-100" type="submit">
-            Submit
-          </Button>
+          {props.isCheckout ? (
+            ""
+          ) : (
+            <Button className="w-100" type="submit">
+              Submit
+            </Button>
+          )}
         </Col>
       </Row>
       <Row className="mb-3 justify-content-between">
