@@ -25,9 +25,9 @@ function MyAccount() {
   };
 
   return (
-    <div className="container mt-5 text-primary">
+    <div className="container-fluid container-lg mt-5 text-primary ">
       <Row>
-        <div className="col-3">
+        <div className="col-lg-3 col-12">
           <Col>
             <p className="fs-3">
               <strong>Hello, Bar</strong>

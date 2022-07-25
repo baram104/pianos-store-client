@@ -3,7 +3,7 @@ import "./NavbarComp.css";
 import { Navbar, Container, Nav, Col } from "react-bootstrap";
 function NavbarComp() {
   return (
-    <Navbar bg="dark" expand="lg" variant="primary">
+    <Navbar bg="secondary" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#home">Logo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

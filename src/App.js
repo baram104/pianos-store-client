@@ -5,6 +5,7 @@ import MyAccount from "./MyAccount/MyAccount";
 import FormComp from "./FormComp";
 import { formInputs } from "./data/formInputsData";
 import ProductsPage from "./ProductsPage";
+import CartPage from "./CartPage";
 
 function App() {
   const handleFormDetails = (details) => {
@@ -28,7 +29,8 @@ function App() {
       <NavbarComp />
       {/* <ProductsPage></ProductsPage> */}
       {/* <ProductDetails id="1" isOnWishList={false} /> */}
-      <MyAccount />
+      {/* <MyAccount /> */}
+      <CartPage />
       {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
