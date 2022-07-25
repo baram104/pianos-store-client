@@ -1,0 +1,9 @@
+#basic-navbar-nav a {
+  color: white;
+}
+#basic-navbar-nav a:hover {
+  color: black;
+}
+#basic-navbar-nav .active {
+  color: black;
+}

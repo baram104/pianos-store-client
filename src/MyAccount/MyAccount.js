@@ -1,5 +1,6 @@
 import MyWishList from "./MyWishList";
 import FormComp from "../FormComp";
+import "../FormComp.css";
 import { formInputs } from "../data/formInputsData";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
@@ -28,16 +29,19 @@ function MyAccount() {
       <Row>
         <div className="col-3">
           <Col>
-            <p className="fs-3">Hello, Bar</p>
+            <p className="fs-3">
+              <strong>Hello, Bar</strong>
+            </p>
+            <div className="line"></div>
           </Col>
-          <Col>
+          <Col className="mt-2">
             <button className="btn" type="button">
               <p className="fs-4 text-primary">Change Details</p>
             </button>
           </Col>
           <Col>
             <button className="btn mt-2" type="button">
-              <p className="fs-4 text-primary">My wishlist</p>
+              <p className="fs-4 text-primary">My Wishlist</p>
             </button>
           </Col>
         </div>
