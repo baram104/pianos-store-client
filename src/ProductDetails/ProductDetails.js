@@ -5,6 +5,7 @@ import styles from "./ProductDetails.module.css";
 import { useEffect, useState } from "react";
 import * as api from "../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
+import { Carousel } from "react-bootstrap";
 
 function ProductDetails(props) {
   const [product, setProduct] = useState(null);
@@ -19,23 +20,39 @@ function ProductDetails(props) {
         <div className="card mt-3">
           <div className="row g-0">
             <div className="col-lg-5 col-md-12">
-              <img
-                style={{ height: "100%", width: "100%" }}
-                src={product.imgSrc}
-                className="img-fluid rounded-start"
-                alt={product.imgAlt}
-                title={product.imgTitle}
-              />
+              <Carousel>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={product.imgSrc}
+                    alt="First slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={product.imgSrc}
+                    alt="Second slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={product.imgSrc}
+                    alt="Third slide"
+                  />
+                </Carousel.Item>
+              </Carousel>
             </div>
             <div className="col-lg-7 col-md-12">
-              <div className="card-body row">
+              <div className="card-body">
                 <div className="col text-start">
                   <h3 className="card-title text-dark">{product.name}</h3>
                   <p className="card-text text-primary">
                     <h3>${product.price}</h3>
                   </p>
                   <p className="card-text">{product.description}</p>
-                  <div className="col text-center">
+                  <div className="col">
                     {!product.quantity ? (
                       <OutOfStockButtons />
                     ) : (
@@ -46,14 +63,14 @@ function ProductDetails(props) {
                       </div>
                     )}
                     {product.quantity && (
-                      <div className="col justify-content-center mt-3">
-                        <div className="input-group justify-content-center">
+                      <div className="col mt-3">
+                        <div className="input-group">
                           <span className="input-group-text" id="basic-addon1">
                             Qty
                           </span>
                           <input
-                            style={{ maxWidth: "4vw" }}
                             type="number"
+                            style={{ maxWidth: "12vw" }}
                             min={1}
                             className="form-control"
                             aria-label="Quantity"

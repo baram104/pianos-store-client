@@ -30,12 +30,12 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />
       {/* <ProductsPage></ProductsPage> */}
-      {/* <ProductDetails id="1" isOnWishList={false} /> */}
+      <ProductDetails id="2" isOnWishList={false} />
       {/* <MyAccount /> */}
       {/* <CartPage /> */}
       {/* <CheckoutPage /> */}
       {/* <OrderSummaryPage /> */}
-      <FormComp
+      {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
         formInputs={loginFormInputs}
@@ -44,7 +44,7 @@ function App() {
         formTitle="Sign Up"
         handleFormDetails={handleFormDetails}
         formInputs={signUpFormInputs}
-      />
+      /> */}
       <Footer />
     </div>
   );
