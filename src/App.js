@@ -32,10 +32,10 @@ function App() {
       {/* <ProductsPage></ProductsPage> */}
       {/* <ProductDetails id="2" isOnWishList={false} /> */}
       {/* <MyAccount /> */}
-      {/* <CartPage /> */}
+      <CartPage />
       {/* <CheckoutPage /> */}
       {/* <OrderSummaryPage /> */}
-      <FormComp
+      {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
         formInputs={loginFormInputs}
@@ -44,7 +44,7 @@ function App() {
         formTitle="Sign Up"
         handleFormDetails={handleFormDetails}
         formInputs={signUpFormInputs}
-      />
+      /> */}
       <Footer />
     </div>
   );
