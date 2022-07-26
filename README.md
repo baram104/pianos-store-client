@@ -71,7 +71,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 tasks to be done-
 1.Check Nav links
-2.check if every page is responsive and looks good.
-3.move the buttons and summary in the checkout page.
 4.add out of stock buttons to a few products in the cart.
 5.products page move buttons to the bottom.
