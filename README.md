@@ -70,7 +70,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 tasks to be done-
-1.product details, change the img to gallery, and fix the buttons and the loads of space
+1.Check Nav links
 2.check if every page is responsive and looks good.
 3.move the buttons and summary in the checkout page.
 4.add out of stock buttons to a few products in the cart.
