@@ -54,7 +54,7 @@ function MyAccount() {
         </Col>
       </Row>
 
-      {/* <MyWishList /> */}
+      <MyWishList />
     </div>
   );
 }

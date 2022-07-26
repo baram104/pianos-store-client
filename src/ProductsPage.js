@@ -31,7 +31,7 @@ export default function ProductsPage() {
 
         <Col md={9} className="px-5">
           <Row className="mt-0">
-            <Col sm={3}>
+            <Col xs={3} className="mt-3">
               <Form.Select aria-label="Default select example">
                 <option>Sort by</option>
                 <option value="1">Price low to high</option>

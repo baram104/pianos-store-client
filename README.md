@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-task to be done-
-1.create DAL
-2.improve error messages in validations
-3.create home page
+tasks to be done-
+1.Check Nav links
+4.add out of stock buttons to a few products in the cart.
+5.products page move buttons to the bottom.
