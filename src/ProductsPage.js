@@ -51,25 +51,29 @@ export default function ProductsPage() {
                     src={piano.imgSrc}
                     className={styles.cardImg}
                   />
-                  <Card.Body>
-                    <Card.Title>
-                      {piano.name}
-                      <span className={styles.wishlistIconContainer}>
-                        <img
-                          className={styles.wishlistIcon}
-                          src={emptyHeart}
-                        ></img>
-                      </span>
-                    </Card.Title>
-                    <Card.Text className="text-primary">
-                      ${piano.price}
-                    </Card.Text>
-                    <Card.Text>{piano.description}</Card.Text>
-                    <div className="text-center">
-                      <Button variant="primary" className="m-1">
-                        But it Now
-                      </Button>
-                      <Button variant="secondary">Add to Cart</Button>
+                  <Card.Body className="d-flex flex-column justify-content-between">
+                    <div>
+                      <Card.Title>
+                        {piano.name}
+                        <span className={styles.wishlistIconContainer}>
+                          <img
+                            className={styles.wishlistIcon}
+                            src={emptyHeart}
+                          ></img>
+                        </span>
+                      </Card.Title>
+                      <Card.Text className="text-primary">
+                        ${piano.price}
+                      </Card.Text>
+                      <Card.Text>{piano.description}</Card.Text>
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-center">
+                        <Button variant="primary" className="m-1">
+                          But it Now
+                        </Button>
+                        <Button variant="secondary">Add to Cart</Button>
+                      </div>
                     </div>
                   </Card.Body>
                 </Card>
