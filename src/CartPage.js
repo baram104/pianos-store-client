@@ -7,8 +7,8 @@ export default function CartPage() {
       <Row>
         <h2>Hello Bar, Your Cart</h2>
       </Row>
-      <CartProduct isCart={true} />
-      <CartProduct isCart={true} />
+      <CartProduct id="2" isCart={true} />
+      <CartProduct id="1" isCart={true} />
       <Row className="align-items-end d-flex">
         <Col className="justify-content-center d-flex">
           <Button variant="danger">Delete Cart</Button>

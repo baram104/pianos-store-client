@@ -1,13 +1,10 @@
 @media screen and (min-width: 1400px) {
   .cardSize {
-    width: 40vw;
+    max-width: 60vw;
     height: auto;
   }
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1400px) {
-  .cardSize {
-    width: 60vw;
-    height: auto;
-  }
+.cardSize img {
+  width: 40vw;
 }
