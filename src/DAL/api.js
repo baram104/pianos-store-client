@@ -1,6 +1,6 @@
-import pianos from "../data/productsData.json";
-import categories from "../data/categoriesData.json";
-import pianosImages from "../data/productsImgs.json";
+import pianos from "./data/productsData.json";
+import categories from "./data/categoriesData.json";
+import pianosImages from "./data/productsImgs.json";
 
 const mapPiano = (piano) => {
   const pianoCategory = categories.find((category) => category.id === piano.id);

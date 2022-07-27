@@ -1,4 +1,4 @@
-import OutOfStockButtons from "../../Components/UI/OutOfStockButtons";
+import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
 import styles from "./ProductDetails.module.css";

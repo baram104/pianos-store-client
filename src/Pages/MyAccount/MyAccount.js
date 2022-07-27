@@ -1,6 +1,6 @@
 import MyWishList from "./MyWishList";
 import FormComp from "../../Components/Form/FormComp";
-import { formInputs } from "../../data/formInputsData";
+import { formInputs } from "../../DAL/data/formInputsData";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 

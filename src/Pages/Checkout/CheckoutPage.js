@@ -1,5 +1,5 @@
 import { Container, Row, Card, Button, Col } from "react-bootstrap";
-import { formInputs } from "../../data/formInputsData";
+import { formInputs } from "../../DAL/data/formInputsData";
 import CartProduct from "../../Components/Product/CartProduct";
 import FormComp from "../../Components/Form/FormComp";
 
