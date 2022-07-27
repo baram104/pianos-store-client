@@ -16,9 +16,9 @@ export default function CheckoutPage() {
       </Row>
       <Row>
         <Col lg={6} xs={12}>
-          <CartProduct />
-          <CartProduct />
-          <CartProduct />
+          <CartProduct id="2" />
+          <CartProduct id="1" />
+          <CartProduct id="1" />
         </Col>
         <Col lg={6} xs={12}>
           <Row className="h-100">

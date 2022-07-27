@@ -14,26 +14,26 @@ export default function CartProduct({ isCart, id }) {
   }, []);
 
   return (
-    <Row className="justify-content-center mt-5 ${styles.cardSize}">
+    <Row className={`justify-content-center mt-5 ${styles.cardSize}`}>
       {product ? (
-        <Card as={Col} className={`d-flex flex-row ${styles.cardSize}`}>
-          <Card.Img variant="top" src={product.imgSrc} />
+        <Card as={Col} className={`d-flex flex-row`}>
+          <Card.Img variant="top" src={product.imgs[0].imgSrc} />
           <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text className="text-primary">${product.price}</Card.Text>
+            <Card.Text className="text-primary">${product.unitPrice}</Card.Text>
             <Card.Text>
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
             <Row className="justify-content-between">
-              {product.quantity ? (
-                <Col md={4} xs={8}>
+              {product.unitsInStock ? (
+                <Col md={8} xs={8}>
                   <Form.Group>
                     <Form.Control
                       type="number"
                       placeholder="Qty."
                       min={1}
-                      max={product.quantity}
+                      max={product.unitsInStocks}
                     />
                   </Form.Group>
                 </Col>

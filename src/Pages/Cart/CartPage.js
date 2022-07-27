@@ -7,8 +7,10 @@ export default function CartPage() {
       <Row>
         <h2>Hello Bar, Your Cart</h2>
       </Row>
-      <CartProduct id="2" isCart={true} />
-      <CartProduct id="1" isCart={true} />
+      <Row className="d-flex justify-content-center">
+        <CartProduct id="2" isCart={true} />
+        <CartProduct id="1" isCart={true} />
+      </Row>
       <Row className="align-items-end d-flex">
         <Col className="justify-content-center d-flex">
           <Button variant="danger">Delete Cart</Button>
