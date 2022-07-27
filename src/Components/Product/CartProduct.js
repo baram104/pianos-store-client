@@ -1,9 +1,9 @@
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import styles from "./CartPage.module.css";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import styles from "./CartProduct.module.css";
 import { MdDelete } from "react-icons/md";
-import * as api from "./DAL/api";
+import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
-import OutOfStockButtons from "./ProductDetails/OutOfStockButtons";
+import OutOfStockButtons from "../UI/OutOfStockButtons";
 import { useEffect, useState } from "react";
 
 export default function CartProduct({ isCart, id }) {
