@@ -1,9 +1,9 @@
-import OutOfStockButtons from "./OutOfStockButtons";
-import filledHeart from "../filledheart.png";
-import emptyHeart from "../emptyheart.png";
+import OutOfStockButtons from "../../Components/UI/OutOfStockButtons";
+import filledHeart from "../../assets/filledheart.png";
+import emptyHeart from "../../assets/emptyheart.png";
 import styles from "./ProductDetails.module.css";
 import { useEffect, useState } from "react";
-import * as api from "../DAL/api";
+import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
 import { Carousel } from "react-bootstrap";
 

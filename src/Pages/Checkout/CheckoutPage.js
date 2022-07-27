@@ -1,7 +1,7 @@
 import { Container, Row, Card, Button, Col } from "react-bootstrap";
-import { formInputs } from "./data/formInputsData";
-import CartProduct from "./CartProduct";
-import FormComp from "./FormComp";
+import { formInputs } from "../../data/formInputsData";
+import CartProduct from "../../Components/Product/CartProduct";
+import FormComp from "../../Components/Form/FormComp";
 
 export default function CheckoutPage() {
   const addressForm = {

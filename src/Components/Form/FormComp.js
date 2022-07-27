@@ -4,7 +4,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
-import { validateAndUpdateInput } from "./common/helpers";
+import { validateAndUpdateInput } from "../../common/helpers.js";
 
 export default function FormComp(props) {
   const [form, setForm] = useState(props.formInputs);

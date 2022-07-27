@@ -1,13 +1,13 @@
-import ProductDetails from "./ProductDetails/ProductDetails";
-import NavbarComp from "./NavbarComp";
-import Footer from "./Footer";
-import MyAccount from "./MyAccount/MyAccount";
-import FormComp from "./FormComp";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import NavbarComp from "./Components/Layout/NavbarComp";
+import Footer from "./Components/Layout/Footer";
+import MyAccount from "./Pages/MyAccount/MyAccount";
+import FormComp from "./Components/Form/FormComp";
 import { formInputs } from "./data/formInputsData";
-import ProductsPage from "./ProductsPage";
-import CartPage from "./CartPage";
-import CheckoutPage from "./CheckoutPage";
-import OrderSummaryPage from "./OrderSummaryPage";
+import ProductsPage from "./Pages/Products/ProductsPage";
+import CartPage from "./Pages/Cart/CartPage";
+import CheckoutPage from "./Pages/Checkout/CheckoutPage";
+import OrderSummaryPage from "./Pages/OrderSummary/OrderSummaryPage";
 
 function App() {
   const handleFormDetails = (details) => {
@@ -29,9 +29,9 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />
-      <ProductsPage></ProductsPage>
+      {/* <ProductsPage></ProductsPage> */}
       {/* <ProductDetails id="2" isOnWishList={false} /> */}
-      {/* <MyAccount /> */}
+      <MyAccount />
       {/* <CartPage /> */}
       {/* <CheckoutPage /> */}
       {/* <OrderSummaryPage /> */}

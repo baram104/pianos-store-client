@@ -8,10 +8,10 @@ import {
   ListGroup,
   Form,
 } from "react-bootstrap";
-import * as api from "./DAL/api";
+import * as api from "../../DAL/api";
 import styles from "./ProductsPage.module.css";
-import filledHeart from "./filledheart.png";
-import emptyHeart from "./emptyheart.png";
+import filledHeart from "../../assets/filledheart.png";
+import emptyHeart from "../../assets/emptyheart.png";
 
 export default function ProductsPage() {
   const [pianos, setPianos] = useState([]);

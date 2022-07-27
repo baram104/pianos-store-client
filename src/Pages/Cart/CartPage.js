@@ -1,5 +1,5 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import CartProduct from "./CartProduct";
+import CartProduct from "../../Components/Product/CartProduct";
 
 export default function CartPage() {
   return (
