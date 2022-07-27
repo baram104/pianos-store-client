@@ -16,6 +16,8 @@ const mapPiano = (piano) => {
   return {
     id: piano.id,
     imgs: pianoImgs,
+    name: piano.name,
+    description: piano.description,
     category: pianoCategory,
     arrivedToStore: piano.arrived_to_store,
     unitsInStock: piano.units_in_stock,

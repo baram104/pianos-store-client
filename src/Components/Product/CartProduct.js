@@ -54,7 +54,7 @@ export default function CartProduct({ isCart, id }) {
           </Card.Body>
         </Card>
       ) : (
-        <Spinner />
+        <Spinner animation="border" variant="primary" />
       )}
     </Row>
   );
