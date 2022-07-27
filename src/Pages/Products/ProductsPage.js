@@ -7,6 +7,7 @@ import {
   Button,
   ListGroup,
   Form,
+  Spinner,
 } from "react-bootstrap";
 import * as api from "../../DAL/api";
 import styles from "./ProductsPage.module.css";
@@ -42,13 +43,14 @@ export default function ProductsPage() {
               </Form.Select>
             </Col>
           </Row>
-          {pianos.length && (
+          {pianos.length ? (
             <Row className="justify-content-between flex-start justify-content-xs-center">
               {pianos.map((piano) => (
                 <Card style={{ width: "20rem" }} className="mb-3">
                   <Card.Img
                     variant="top"
-                    src={piano.imgSrc}
+                    src={piano.imgs[0].imgSrc}
+                    title={piano.imgs[0].imgTitleAlt}
                     className={styles.cardImg}
                   />
                   <Card.Body className="d-flex flex-column justify-content-between">
@@ -63,7 +65,7 @@ export default function ProductsPage() {
                         </span>
                       </Card.Title>
                       <Card.Text className="text-primary">
-                        ${piano.price}
+                        ${piano.unitPrice}
                       </Card.Text>
                       <Card.Text>{piano.description}</Card.Text>
                     </div>
@@ -79,6 +81,8 @@ export default function ProductsPage() {
                 </Card>
               ))}
             </Row>
+          ) : (
+            <Spinner animation="border" variant="primary" />
           )}
         </Col>
       </Row>
