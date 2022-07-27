@@ -1,4 +1,4 @@
-import ProductDetails from "../ProductDetails/ProductDetails";
+import ProductDetails from "../../Components/ProductDetails/ProductDetails";
 
 export default function MyWishList() {
   return (

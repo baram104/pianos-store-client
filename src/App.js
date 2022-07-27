@@ -1,9 +1,9 @@
-import ProductDetails from "./Pages/ProductDetails/ProductDetails";
-import NavbarComp from "./Components/Layout/NavbarComp";
-import Footer from "./Components/Layout/Footer";
+import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import NavbarComp from "./Components/Layout/Navbar/NavbarComp";
+import Footer from "./Components/Layout/Footer/Footer";
 import MyAccount from "./Pages/MyAccount/MyAccount";
 import FormComp from "./Components/Form/FormComp";
-import { formInputs } from "./data/formInputsData";
+import { formInputs } from "./DAL/data/formInputsData";
 import ProductsPage from "./Pages/Products/ProductsPage";
 import CartPage from "./Pages/Cart/CartPage";
 import CheckoutPage from "./Pages/Checkout/CheckoutPage";

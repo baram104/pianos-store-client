@@ -3,7 +3,7 @@ import styles from "./CartProduct.module.css";
 import { MdDelete } from "react-icons/md";
 import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
-import OutOfStockButtons from "../UI/OutOfStockButtons";
+import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import { useEffect, useState } from "react";
 
 export default function CartProduct({ isCart, id }) {
