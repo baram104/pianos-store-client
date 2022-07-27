@@ -31,10 +31,10 @@ function App() {
       <NavbarComp />
       {/* <ProductsPage></ProductsPage> */}
       {/* <ProductDetails id="2" isOnWishList={false} /> */}
-      <MyAccount />
+      {/* <MyAccount /> */}
       {/* <CartPage /> */}
       {/* <CheckoutPage /> */}
-      {/* <OrderSummaryPage /> */}
+      <OrderSummaryPage />
       {/* <FormComp
         formTitle="Sign In"
         handleFormDetails={handleFormDetails}
