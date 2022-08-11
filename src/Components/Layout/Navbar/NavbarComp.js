@@ -1,23 +1,29 @@
 import Badge from "react-bootstrap/Badge";
 import "./NavbarComp.css";
 import { Navbar, Container, Nav, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
 function NavbarComp() {
   return (
     <Navbar bg="secondary" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#home">Logo</Navbar.Brand>
+        <Navbar.Brand>Logo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav as={Col}>
             <Col className="col-6">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">About</Nav.Link>
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
             </Col>
             <Col className="d-lg-flex justify-content-lg-end">
-              <Nav.Link href="#login">Login/Profile</Nav.Link>
-              <Nav.Link href="#cart">
+              <NavLink className="nav-link" to="/login">
+                Login/Profile
+              </NavLink>
+
+              <NavLink className="nav-link" to="/cart">
                 Cart<Badge className="bg-light mx-1">0</Badge>
-              </Nav.Link>
+              </NavLink>
 
               <form className="d-flex" role="search">
                 <input

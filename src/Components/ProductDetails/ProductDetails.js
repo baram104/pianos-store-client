@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
 import { Carousel } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 function ProductDetails(props) {
   const [product, setProduct] = useState(null);
+  const params = useParams();
 
   useEffect(() => {
-    api.getPiano(props.id).then((data) => setProduct(data));
+    api.getPiano(params.productId).then((data) => setProduct(data));
   }, []);
 
   return (
@@ -21,8 +23,8 @@ function ProductDetails(props) {
           <div className="row g-0">
             <div className="col-lg-5 col-md-12">
               <Carousel>
-                {product.imgs.map(({ imgSrc, imgTitleAlt }) => (
-                  <Carousel.Item>
+                {product.imgs.map(({ imgSrc, imgTitleAlt }, idx) => (
+                  <Carousel.Item key={idx}>
                     <img
                       className="d-block w-100"
                       src={imgSrc}
@@ -37,9 +39,9 @@ function ProductDetails(props) {
               <div className="card-body">
                 <div className="col text-start">
                   <h3 className="card-title text-dark">{product.name}</h3>
-                  <p className="card-text text-primary">
-                    <h3>${product.unitPrice}</h3>
-                  </p>
+                  <h3 className="card-text text-primary">
+                    <p>${product.unitPrice}</p>
+                  </h3>
                   <p className="card-text">{product.description}</p>
                   <div className="col">
                     {!product.unitsInStock ? (
