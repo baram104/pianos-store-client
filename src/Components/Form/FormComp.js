@@ -5,6 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
 import { validateAndUpdateInput } from "../../common/helpers.js";
+import { Link } from "react-router-dom";
 
 export default function FormComp(props) {
   const [form, setForm] = useState(props.formInputs);
@@ -74,12 +75,12 @@ export default function FormComp(props) {
       <Row className="mb-3 justify-content-between">
         <Col>
           {props.formTitle === "Sign Up" ? (
-            <a href="">Already registered? Sign in</a>
+            <Link to="/login">Already registered? Sign in</Link>
           ) : (
             ""
           )}
           {props.formTitle === "Sign In" ? (
-            <a href="">Don't have an acount yet? Sign Up</a>
+            <Link to="/signup">Don't have an acount yet? Sign Up</Link>
           ) : (
             ""
           )}

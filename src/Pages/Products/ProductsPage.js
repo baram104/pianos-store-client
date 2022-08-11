@@ -13,6 +13,7 @@ import * as api from "../../DAL/api";
 import styles from "./ProductsPage.module.css";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
+import { Link } from "react-router-dom";
 
 export default function ProductsPage() {
   const [pianos, setPianos] = useState([]);
@@ -46,7 +47,11 @@ export default function ProductsPage() {
           {pianos.length ? (
             <Row className="justify-content-between flex-start justify-content-xs-center">
               {pianos.map((piano) => (
-                <Card style={{ width: "20rem" }} className="mb-3">
+                <Card
+                  key={piano.id}
+                  style={{ width: "20rem" }}
+                  className="mb-3"
+                >
                   <Card.Img
                     variant="top"
                     src={piano.imgs[0].imgSrc}
@@ -56,13 +61,18 @@ export default function ProductsPage() {
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <div>
                       <Card.Title>
-                        {piano.name}
-                        <span className={styles.wishlistIconContainer}>
-                          <img
-                            className={styles.wishlistIcon}
-                            src={emptyHeart}
-                          ></img>
-                        </span>
+                        <Link
+                          to={`products/${piano.id}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          {piano.name}
+                          <span className={styles.wishlistIconContainer}>
+                            <img
+                              className={styles.wishlistIcon}
+                              src={emptyHeart}
+                            ></img>
+                          </span>
+                        </Link>
                       </Card.Title>
                       <Card.Text className="text-primary">
                         ${piano.unitPrice}

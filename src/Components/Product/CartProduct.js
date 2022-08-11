@@ -5,6 +5,7 @@ import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
 import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function CartProduct({ isCart, id }) {
   const [product, setProduct] = useState(null);
@@ -19,7 +20,14 @@ export default function CartProduct({ isCart, id }) {
         <Card as={Col} className={`d-flex flex-row`}>
           <Card.Img variant="top" src={product.imgs[0].imgSrc} />
           <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
+            <Card.Title>
+              <Link
+                to={`/products/${product.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                {product.name}
+              </Link>
+            </Card.Title>
             <Card.Text className="text-primary">${product.unitPrice}</Card.Text>
             <Card.Text>
               Some quick example text to build on the card title and make up the
