@@ -23,13 +23,14 @@ function ProductDetails(props) {
           <div className="row g-0">
             <div className="col-lg-5 col-md-12">
               <Carousel>
-                {product.imgs.map(({ imgSrc, imgTitleAlt }, idx) => (
-                  <Carousel.Item key={idx}>
+                {product.imgs.map((img) => (
+                  <Carousel.Item>
                     <img
+                      key={product.id}
                       className="d-block w-100"
-                      src={imgSrc}
-                      alt={imgTitleAlt}
-                      title={imgTitleAlt}
+                      src={`http://localhost:3100/images/pianos/${product.id}/${img}`}
+                      alt={img}
+                      title={img}
                     />
                   </Carousel.Item>
                 ))}
@@ -40,11 +41,11 @@ function ProductDetails(props) {
                 <div className="col text-start">
                   <h3 className="card-title text-dark">{product.name}</h3>
                   <h3 className="card-text text-primary">
-                    <p>${product.unitPrice}</p>
+                    <p>${product.unit_price}</p>
                   </h3>
                   <p className="card-text">{product.description}</p>
                   <div className="col">
-                    {!product.unitsInStock ? (
+                    {!product.units_in_stock ? (
                       <OutOfStockButtons />
                     ) : (
                       <div>
@@ -53,7 +54,7 @@ function ProductDetails(props) {
                         </button>
                       </div>
                     )}
-                    {product.unitsInStock ? (
+                    {product.units_in_stock ? (
                       <div className="col mt-3">
                         <div className="input-group">
                           <span className="input-group-text" id="basic-addon1">
@@ -65,7 +66,7 @@ function ProductDetails(props) {
                             min={1}
                             className="form-control"
                             aria-label="Quantity"
-                            max={product.quantity}
+                            max={product.units_in_stock}
                           />
                           <button className="btn btn-primary mx-3 rounded-0">
                             Add to cart

@@ -17,19 +17,28 @@ import { Link } from "react-router-dom";
 
 export default function ProductsPage() {
   const [pianos, setPianos] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     api.getPianos().then((data) => setPianos(data));
+    api.getCategories().then((data) => setCategories(data));
   }, []);
   return (
     <Container fluid className="my-3 align-items-baseline">
       <Row>
-        <Col md={3}>
-          <ListGroup>
-            <ListGroup.Item variant="primary">Categories</ListGroup.Item>
-            <ListGroup.Item action>Electric Pianos</ListGroup.Item>
-            <ListGroup.Item action>Acoustic Pianos</ListGroup.Item>
-          </ListGroup>
-        </Col>
+        {categories.length ? (
+          <Col md={3}>
+            <ListGroup>
+              <ListGroup.Item variant="primary">Categories</ListGroup.Item>
+              {categories.map((category) => (
+                <ListGroup.Item key={category.id} action>
+                  {category.name}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </Col>
+        ) : (
+          ""
+        )}
 
         <Col md={9} className="px-5">
           <Row className="mt-0">
@@ -54,8 +63,8 @@ export default function ProductsPage() {
                 >
                   <Card.Img
                     variant="top"
-                    src={piano.imgs[0].imgSrc}
-                    title={piano.imgs[0].imgTitleAlt}
+                    src={`http://localhost:3100/images/pianos/${piano.id}/${piano.img}`}
+                    title={piano.img}
                     className={styles.cardImg}
                   />
                   <Card.Body className="d-flex flex-column justify-content-between">
@@ -75,7 +84,7 @@ export default function ProductsPage() {
                         </Link>
                       </Card.Title>
                       <Card.Text className="text-primary">
-                        ${piano.unitPrice}
+                        ${piano.unit_price}
                       </Card.Text>
                       <Card.Text>{piano.description}</Card.Text>
                     </div>
