@@ -25,24 +25,17 @@ const mapPiano = (piano) => {
   };
 };
 
-export const getPianos = () => {
-  return new Promise((res) => {
-    const mappedPianos = [];
-    for (const piano of pianos) {
-      mappedPianos.push(mapPiano(piano));
-    }
-    setTimeout(() => {
-      res(mappedPianos);
-    }, 2000);
-  });
+export const getPianos = async () => {
+  const res = await fetch("http://localhost:3100/products");
+  return res.json();
 };
 
-export const getPiano = (id) => {
-  return new Promise((res) => {
-    id = Number(id);
-    const requestedPiano = pianos.find((piano) => piano.id === id);
-    setTimeout(() => {
-      res(mapPiano(requestedPiano));
-    }, 2000);
-  });
+export const getCategories = async () => {
+  const res = await fetch("http://localhost:3100/categories");
+  return res.json();
+};
+
+export const getPiano = async (id) => {
+  const res = await fetch(`http://localhost:3100/products/${id}`);
+  return res.json();
 };
