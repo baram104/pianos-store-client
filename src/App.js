@@ -9,6 +9,7 @@ import OrderSummaryPage from "./Pages/OrderSummary/OrderSummaryPage";
 import { Route, Routes } from "react-router-dom";
 import SignInPage from "./Pages/SignIn/SignInPage";
 import SignUpPage from "./Pages/SignUp/SignUpPage";
+import RateOrderPage from "./Pages/RateOrder/RateOrderPage";
 
 function App() {
   const handleFormDetails = (details) => {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/ordersummary" element={<OrderSummaryPage />}></Route>
         <Route path="/login" element={<SignInPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/rate-order" element={<RateOrderPage />}></Route>
       </Routes>
       {/* <ProductDetails id="2" isOnWishList={false} /> */}
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Rating from "@mui/material/Rating";
 import {
   Container,
   Row,
@@ -58,7 +59,7 @@ export default function ProductsPage() {
               {pianos.map((piano) => (
                 <Card
                   key={piano.id}
-                  style={{ width: "20rem" }}
+                  style={{ width: "20rem", height: "35rem" }}
                   className="mb-3"
                 >
                   <Card.Img
@@ -75,18 +76,19 @@ export default function ProductsPage() {
                           style={{ textDecoration: "none" }}
                         >
                           {piano.name}
-                          <span className={styles.wishlistIconContainer}>
-                            <img
-                              className={styles.wishlistIcon}
-                              src={emptyHeart}
-                            ></img>
-                          </span>
                         </Link>
+                        <span className={styles.wishlistIconContainer}>
+                          <img
+                            className={styles.wishlistIcon}
+                            src={emptyHeart}
+                          ></img>
+                        </span>
                       </Card.Title>
                       <Card.Text className="text-primary">
                         ${piano.unit_price}
                       </Card.Text>
-                      <Card.Text>{piano.description}</Card.Text>
+                      <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
+                      <Rating name="read-only" value={3} readOnly />
                     </div>
                     <div className="mt-2">
                       <div className="text-center">
