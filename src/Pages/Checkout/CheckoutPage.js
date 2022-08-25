@@ -15,12 +15,12 @@ export default function CheckoutPage() {
         <h2>Checkout</h2>
       </Row>
       <Row>
-        <Col lg={6} xs={12}>
+        <Col lg={7} xs={12}>
           <CartProduct id="2" />
           <CartProduct id="1" />
           <CartProduct id="1" />
         </Col>
-        <Col lg={6} xs={12}>
+        <Col lg={5} xs={12} className="">
           <Row className="h-100">
             <Col xs={12}>
               <FormComp

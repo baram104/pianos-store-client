@@ -19,7 +19,7 @@ export default function CartProduct({ isCart, id, isRating }) {
   return (
     <Row className={`justify-content-center mt-5 ${styles.cardSize}`}>
       {product ? (
-        <Card as={Col} className={`d-flex flex-row`}>
+        <Card as={Col} className={`d-flex flex-row px-0`}>
           <Card.Img
             variant="top"
             src={`http://localhost:3100/images/pianos/${product.id}/${product.imgs[0]}`}
@@ -37,10 +37,7 @@ export default function CartProduct({ isCart, id, isRating }) {
             <Card.Text className="text-primary">
               ${product.unit_price}
             </Card.Text>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
+            <Card.Text>{product.description.slice(0, 50)}...</Card.Text>
             {!isRating ? (
               <Row className="justify-content-between">
                 {product.units_in_stock ? (

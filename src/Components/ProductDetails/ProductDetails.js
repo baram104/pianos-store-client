@@ -5,8 +5,9 @@ import styles from "./ProductDetails.module.css";
 import { useEffect, useState } from "react";
 import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { Rating } from "@mui/material";
 
 function ProductDetails(props) {
   const [product, setProduct] = useState(null);
@@ -19,8 +20,8 @@ function ProductDetails(props) {
   return (
     <section className="container">
       {product ? (
-        <div className="card mt-3">
-          <div className="row g-0">
+        <div className="card mt-3 border-0 ">
+          <div className="row g-0 my-0">
             <div className="col-lg-5 col-md-12">
               <Carousel>
                 {product.imgs.map((img) => (
@@ -37,13 +38,17 @@ function ProductDetails(props) {
               </Carousel>
             </div>
             <div className="col-lg-7 col-md-12">
-              <div className="card-body">
-                <div className="col text-start">
-                  <h3 className="card-title text-dark">{product.name}</h3>
-                  <h3 className="card-text text-primary">
-                    <p>${product.unit_price}</p>
-                  </h3>
-                  <p className="card-text">{product.description}</p>
+              <div className="card-body h-100">
+                <div className="col text-start d-flex flex-column justify-content-space h-100">
+                  <Col>
+                    <h3 className="card-title text-dark">{product.name}</h3>
+                    <h3 className="card-text text-primary">
+                      <p>${product.unit_price}</p>
+                    </h3>
+                    <p className="card-text">{product.description}</p>
+                    <Rating name="read-only" value={3} readOnly />
+                  </Col>
+
                   <div className="col">
                     {!product.units_in_stock ? (
                       <OutOfStockButtons />

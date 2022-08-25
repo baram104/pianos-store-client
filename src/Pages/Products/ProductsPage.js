@@ -24,14 +24,17 @@ export default function ProductsPage() {
     api.getCategories().then((data) => setCategories(data));
   }, []);
   return (
-    <Container fluid className="my-3 align-items-baseline">
-      <Row>
+    <Container fluid className="align-items-baseline">
+      <Row className="my-0">
         {categories.length ? (
-          <Col md={3}>
-            <ListGroup>
-              <ListGroup.Item variant="primary">Categories</ListGroup.Item>
+          <Col md={3} className={`${styles.categoryBg} border-end`}>
+            <ListGroup variant="flush">
               {categories.map((category) => (
-                <ListGroup.Item key={category.id} action>
+                <ListGroup.Item
+                  key={category.id}
+                  action
+                  className="bg-transparent"
+                >
                   {category.name}
                 </ListGroup.Item>
               ))}
@@ -41,9 +44,9 @@ export default function ProductsPage() {
           ""
         )}
 
-        <Col md={9} className="px-5">
+        <Col md={9} className="py-4 px-5">
           <Row className="mt-0">
-            <Col xs={3} className="mt-3">
+            <Col xs={3} className="mt-0">
               <Form.Select aria-label="Default select example">
                 <option>Sort by</option>
                 <option value="1">Price low to high</option>
@@ -55,12 +58,14 @@ export default function ProductsPage() {
             </Col>
           </Row>
           {pianos.length ? (
-            <Row className="justify-content-between flex-start justify-content-xs-center">
+            <Row
+              className={`justify-content-between flex-start justify-content-xs-center`}
+            >
               {pianos.map((piano) => (
                 <Card
                   key={piano.id}
                   style={{ width: "20rem", height: "35rem" }}
-                  className="mb-3"
+                  className="mb-3 px-0"
                 >
                   <Card.Img
                     variant="top"
