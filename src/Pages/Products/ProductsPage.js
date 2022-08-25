@@ -14,15 +14,21 @@ import * as api from "../../DAL/api";
 import styles from "./ProductsPage.module.css";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function ProductsPage() {
+  const params = useParams();
   const [pianos, setPianos] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [categoryID, setCategoryID] = useState(null);
   useEffect(() => {
-    api.getPianos().then((data) => setPianos(data));
+    if (params.category_id) {
+      api.getPianos(params.category_id).then((data) => setPianos(data));
+    } else {
+      api.getPianos().then((data) => setPianos(data));
+    }
     api.getCategories().then((data) => setCategories(data));
-  }, []);
+  }, [params.category_id]);
   return (
     <Container fluid className="align-items-baseline">
       <Row className="my-0">
@@ -30,13 +36,15 @@ export default function ProductsPage() {
           <Col md={3} className={`${styles.categoryBg} border-end`}>
             <ListGroup variant="flush">
               {categories.map((category) => (
-                <ListGroup.Item
-                  key={category.id}
-                  action
-                  className="bg-transparent"
-                >
-                  {category.name}
-                </ListGroup.Item>
+                <Link key={category.id} to={"category/" + category.id}>
+                  <ListGroup.Item
+                    onClick={() => setCategoryID(category.id)}
+                    action
+                    className="bg-transparent"
+                  >
+                    {category.name}
+                  </ListGroup.Item>
+                </Link>
               ))}
             </ListGroup>
           </Col>

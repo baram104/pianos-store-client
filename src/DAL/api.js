@@ -25,8 +25,13 @@ const mapPiano = (piano) => {
   };
 };
 
-export const getPianos = async () => {
-  const res = await fetch("http://localhost:3100/products");
+export const getPianos = async (category_id) => {
+  let res;
+  if (category_id) {
+    res = await fetch(`http://localhost:3100/products/category/${category_id}`);
+  } else {
+    res = await fetch("http://localhost:3100/products");
+  }
   return res.json();
 };
 
