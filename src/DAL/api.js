@@ -44,3 +44,21 @@ export const getPiano = async (id) => {
   const res = await fetch(`http://localhost:3100/products/${id}`);
   return res.json();
 };
+
+export const addPianoToCart = async (productId) => {
+  const res = await fetch(`http://localhost:3100/cart`, {
+    method: "POST",
+    credentials: "include",
+    body: productId,
+  });
+};
+
+export const login = async (username, password) => {
+  const res = await fetch(`http://localhost:3100/users/login`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+  return res;
+};

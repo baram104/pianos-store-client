@@ -91,7 +91,7 @@ export default function ProductsPage() {
                     <div>
                       <Card.Title>
                         <Link
-                          to={`products/${piano.id}`}
+                          to={`${piano.id}`}
                           style={{ textDecoration: "none" }}
                         >
                           {piano.name}
