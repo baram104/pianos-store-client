@@ -1,9 +1,11 @@
 import Badge from "react-bootstrap/Badge";
 import "./NavbarComp.css";
-import { Navbar, Container, Nav, Col } from "react-bootstrap";
+import { Navbar, Container, Nav, Col, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-
+import { useContext } from "react";
+import AuthContext from "../../../store/auth-context";
 function NavbarComp() {
+  const ctx = useContext(AuthContext);
   return (
     <Navbar bg="secondary" expand="lg">
       <Container fluid>
@@ -17,9 +19,24 @@ function NavbarComp() {
               </NavLink>
             </Col>
             <Col className="d-lg-flex justify-content-lg-end">
-              <NavLink className="nav-link" to="/login">
-                Login/Profile
-              </NavLink>
+              {ctx.isLoggedIn ? (
+                <>
+                  <NavLink className="nav-link" to="/profile">
+                    My Profile
+                  </NavLink>
+                  <a
+                    className="nav-link"
+                    style={{ cursor: "pointer" }}
+                    onClick={ctx.onLogout}
+                  >
+                    Logout
+                  </a>
+                </>
+              ) : (
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              )}
 
               <NavLink className="nav-link" to="/cart">
                 Cart<Badge className="bg-light mx-1">0</Badge>
