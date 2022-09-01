@@ -36,11 +36,17 @@ export default function ProductsPage() {
           <Col md={3} className={`${styles.categoryBg} border-end`}>
             <ListGroup variant="flush">
               {categories.map((category) => (
-                <Link key={category.id} to={"category/" + category.id}>
+                <Link
+                  key={category.id}
+                  to={"category/" + category.id}
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
                   <ListGroup.Item
                     onClick={() => setCategoryID(category.id)}
                     action
-                    className="bg-transparent"
+                    className={`${styles.listItem} bg-transparent`}
                   >
                     {category.name}
                   </ListGroup.Item>
