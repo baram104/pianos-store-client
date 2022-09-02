@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useFetch() {
+export default function useFetch(apiFunc, funcArgs, dependencies) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const httpRequest = async (url, options) => {
-    try {
-      const res = await fetch(url, options);
-      if (options && options.method) {
-        return;
-      }
-      setData(await res.json());
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  useEffect(() => {
+    apiFunc(funcArgs)
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => setLoading(false));
+  }, [dependencies]);
 
-  return { httpRequest, error, data };
+  return { error, data, loading };
 }
