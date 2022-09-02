@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import {
   Container,
@@ -15,24 +14,27 @@ import styles from "./ProductsPage.module.css";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
 import { Link, useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 export default function ProductsPage() {
   const params = useParams();
-  const [pianos, setPianos] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [categoryID, setCategoryID] = useState(null);
-  useEffect(() => {
-    if (params.category_id) {
-      api.getPianos(params.category_id).then((data) => setPianos(data));
-    } else {
-      api.getPianos().then((data) => setPianos(data));
-    }
-    api.getCategories().then((data) => setCategories(data));
-  }, [params.category_id]);
+
+  const {
+    loading: loadingPianos,
+    data: pianos,
+    error: pianosError,
+  } = useFetch(api.getPianos, params.category_id, params.category_id);
+
+  const {
+    loading: loadingCategories,
+    data: categories,
+    error: categoriesError,
+  } = useFetch(api.getCategories);
+
   return (
     <Container fluid className="align-items-baseline">
       <Row className="my-0">
-        {categories.length ? (
+        {!loadingCategories ? (
           <Col md={3} className={`${styles.categoryBg} border-end`}>
             <ListGroup variant="flush">
               {categories.map((category) => (
@@ -44,7 +46,6 @@ export default function ProductsPage() {
                   }}
                 >
                   <ListGroup.Item
-                    onClick={() => setCategoryID(category.id)}
                     action
                     className={`${styles.listItem} bg-transparent`}
                   >
@@ -71,7 +72,7 @@ export default function ProductsPage() {
               </Form.Select>
             </Col>
           </Row>
-          {pianos.length ? (
+          {!loadingPianos ? (
             <Row
               className={`justify-content-between flex-start justify-content-xs-center`}
             >

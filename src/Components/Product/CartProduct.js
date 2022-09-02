@@ -7,47 +7,45 @@ import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 export default function CartProduct({ isCart, id, isRating }) {
-  const [product, setProduct] = useState(null);
-  const [rating, setRating] = useState(0);
-
-  useEffect(() => {
-    api.getPiano(id).then((data) => setProduct(data));
-  }, []);
+  const {
+    loading: pianoLoading,
+    data: piano,
+    error: pianoError,
+  } = useFetch(api.getPiano, id);
 
   return (
     <Row className={`justify-content-center mt-5 ${styles.cardSize}`}>
-      {product ? (
+      {!pianoLoading ? (
         <Card as={Col} className={`d-flex flex-row px-0`}>
           <Card.Img
             variant="top"
-            src={`http://localhost:3100/images/pianos/${product.id}/${product.imgs[0]}`}
+            src={`http://localhost:3100/images/pianos/${piano.id}/${piano.imgs[0]}`}
             style={{ width: "40vh" }}
           />
           <Card.Body>
             <Card.Title>
               <Link
-                to={`/products/${product.id}`}
+                to={`/products/${piano.id}`}
                 style={{ textDecoration: "none" }}
               >
-                {product.name}
+                {piano.name}
               </Link>
             </Card.Title>
-            <Card.Text className="text-primary">
-              ${product.unit_price}
-            </Card.Text>
-            <Card.Text>{product.description.slice(0, 50)}...</Card.Text>
+            <Card.Text className="text-primary">${piano.unit_price}</Card.Text>
+            <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
             {!isRating ? (
               <Row className="justify-content-between">
-                {product.units_in_stock ? (
+                {piano.units_in_stock ? (
                   <Col md={8} xs={8}>
                     <Form.Group>
                       <Form.Control
                         type="number"
                         placeholder="Qty."
                         min={1}
-                        max={product.units_in_stock}
+                        max={piano.units_in_stock}
                         className="mb-3"
                       />
                     </Form.Group>
@@ -67,13 +65,7 @@ export default function CartProduct({ isCart, id, isRating }) {
                 )}
               </Row>
             ) : (
-              <Rating
-                name="simple-controlled"
-                value={rating}
-                onChange={(event, newValue) => {
-                  setRating(newValue);
-                }}
-              />
+              <Rating name="simple-controlled" />
             )}
           </Card.Body>
         </Card>

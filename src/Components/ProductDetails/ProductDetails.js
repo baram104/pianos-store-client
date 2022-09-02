@@ -2,34 +2,34 @@ import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
 import styles from "./ProductDetails.module.css";
-import { useEffect, useState } from "react";
 import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
 import { Carousel, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 function ProductDetails(props) {
-  const [product, setProduct] = useState(null);
   const params = useParams();
-
-  useEffect(() => {
-    api.getPiano(params.productId).then((data) => setProduct(data));
-  }, []);
+  const {
+    loading: loadingPiano,
+    data: piano,
+    error: pianoError,
+  } = useFetch(api.getPiano, params.productId);
 
   return (
     <section className="container">
-      {product ? (
+      {!loadingPiano ? (
         <div className="card mt-3 border-0 ">
           <div className="row g-0 my-0">
             <div className="col-lg-5 col-md-12">
               <Carousel>
-                {product.imgs.map((img) => (
+                {piano.imgs.map((img) => (
                   <Carousel.Item>
                     <img
-                      key={product.id}
+                      key={piano.id}
                       className="d-block w-100"
-                      src={`http://localhost:3100/images/pianos/${product.id}/${img}`}
+                      src={`http://localhost:3100/images/pianos/${piano.id}/${img}`}
                       alt={img}
                       title={img}
                     />
@@ -41,16 +41,16 @@ function ProductDetails(props) {
               <div className="card-body h-100">
                 <div className="col text-start d-flex flex-column justify-content-space h-100">
                   <Col>
-                    <h3 className="card-title text-dark">{product.name}</h3>
+                    <h3 className="card-title text-dark">{piano.name}</h3>
                     <h3 className="card-text text-primary">
-                      <p>${product.unit_price}</p>
+                      <p>${piano.unit_price}</p>
                     </h3>
-                    <p className="card-text">{product.description}</p>
+                    <p className="card-text">{piano.description}</p>
                     <Rating name="read-only" value={3} readOnly />
                   </Col>
 
                   <div className="col">
-                    {!product.units_in_stock ? (
+                    {!piano.units_in_stock ? (
                       <OutOfStockButtons />
                     ) : (
                       <div>
@@ -59,7 +59,7 @@ function ProductDetails(props) {
                         </button>
                       </div>
                     )}
-                    {product.units_in_stock ? (
+                    {piano.units_in_stock ? (
                       <div className="col mt-3">
                         <div className="input-group">
                           <span className="input-group-text" id="basic-addon1">
@@ -71,7 +71,7 @@ function ProductDetails(props) {
                             min={1}
                             className="form-control"
                             aria-label="Quantity"
-                            max={product.units_in_stock}
+                            max={piano.units_in_stock}
                           />
                           <button className="btn btn-primary mx-3 rounded-0">
                             Add to cart
