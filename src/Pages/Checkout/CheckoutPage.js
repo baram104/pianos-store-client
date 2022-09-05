@@ -1,6 +1,6 @@
 import { Container, Row, Card, Button, Col } from "react-bootstrap";
 import { formInputs } from "../../DAL/data/formInputsData";
-import CartProduct from "../../Components/Product/CartProduct";
+import Product from "../../Components/Product/Product";
 import FormComp from "../../Components/Form/FormComp";
 
 export default function CheckoutPage() {
@@ -16,9 +16,9 @@ export default function CheckoutPage() {
       </Row>
       <Row>
         <Col lg={7} xs={12}>
-          <CartProduct id="2" />
-          <CartProduct id="1" />
-          <CartProduct id="1" />
+          <Product id="2" />
+          <Product id="1" />
+          <Product id="1" />
         </Col>
         <Col lg={5} xs={12} className="">
           <Row className="h-100">

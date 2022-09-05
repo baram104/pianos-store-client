@@ -1,13 +1,13 @@
-import ProductDetails from "../../Components/ProductDetails/ProductDetails";
+import Product from "../../Components/Product/Product";
 
 export default function MyWishList() {
   return (
     <div className="container">
-      <ProductDetails id="2" isOnWishList={true} isOutOfStock={true} />
-      <ProductDetails id="3" isOnWishList={true} isOutOfStock={false} />
-      <ProductDetails id="3" isOnWishList={true} isOutOfStock={true} />
-      <ProductDetails id="1" isOnWishList={true} isOutOfStock={false} />
-      <ProductDetails id="1" isOnWishList={true} isOutOfStock={true} />
+      <Product isOnWishList={true} id="3" />
+      <Product isOnWishList={true} id="2" />
+      <Product isOnWishList={true} id="2" />
+      <Product isOnWishList={true} id="2" />
+      <Product isOnWishList={true} id="2" />
     </div>
   );
 }

@@ -50,10 +50,9 @@ function MyAccount() {
             handleFormDetails={() => {}}
             formInputs={changeNameForm}
           />
+          <MyWishList />
         </Col>
       </Row>
-
-      <MyWishList />
     </div>
   );
 }
