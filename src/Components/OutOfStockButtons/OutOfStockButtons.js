@@ -1,13 +1,15 @@
-import { Fragment } from "react";
-export default function OutOfStockButtons() {
+import { Col, Row } from "react-bootstrap";
+export default function OutOfStockButtons({ isOnWishList }) {
   return (
-    <Fragment>
-      <button className="btn btn-warning mt-3" disabled>
+    <Row className="p-2">
+      <button as={Col} className="btn btn-warning mx-2 col-4" disabled>
         Out of stock
       </button>
-      <button className="btn btn-primary mt-3">
-        Notify me when product is in stock
-      </button>
-    </Fragment>
+      {isOnWishList && (
+        <button as={Col} className="btn btn-primary col-7">
+          Notify me when product is in stock
+        </button>
+      )}
+    </Row>
   );
 }

@@ -1,0 +1,29 @@
+@media screen and (min-width: 1400px) {
+  .cardSize {
+    width: 50vw;
+    height: auto;
+  }
+}
+
+.img {
+  width: 20vw;
+}
+
+@media screen and (max-width: 1200px) {
+  .img {
+    width: 40vw;
+  }
+}
+.wishlistIcon {
+  width: 30px;
+}
+.wishlistIconContainer:hover {
+  background: rgba(115, 115, 115, 0.4);
+  border-radius: 25px;
+  cursor: pointer;
+}
+.wishlistIconContainer {
+  text-align: center;
+  width: 50px;
+  padding: 10px;
+}
