@@ -10,8 +10,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import SignInPage from "./Pages/SignIn/SignInPage";
 import SignUpPage from "./Pages/SignUp/SignUpPage";
 import RateOrderPage from "./Pages/RateOrder/RateOrderPage";
+import { useContext } from "react";
+import AuthContext from "./store/auth-context";
+import Protector from "./Components/Protector/Protector";
 
 function App() {
+  const { isLoggedIn } = useContext(AuthContext);
   const handleFormDetails = (details) => {
     console.log(details);
   };
@@ -29,15 +33,49 @@ function App() {
         </Route>
         <Route path="/products/:productId" element={<ProductDetails />} />
 
-        <Route path="/profile" element={<MyAccount />}></Route>
-        <Route path="/cart" element={<CartPage />}></Route>
-        <Route path="/checkout" element={<CheckoutPage />}></Route>
-        <Route path="/ordersummary" element={<OrderSummaryPage />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <MyAccount />
+            </Protector>
+          }
+        ></Route>
+        <Route
+          path="/cart"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <CartPage />
+            </Protector>
+          }
+        ></Route>
+        <Route
+          path="/checkout"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <CheckoutPage />
+            </Protector>
+          }
+        ></Route>
+        <Route
+          path="/ordersummary"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <OrderSummaryPage />
+            </Protector>
+          }
+        ></Route>
         <Route path="/login" element={<SignInPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/rate-order" element={<RateOrderPage />}></Route>
+        <Route
+          path="/rate-order"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <RateOrderPage />
+            </Protector>
+          }
+        ></Route>
       </Routes>
-      {/* <ProductDetails id="2" isOnWishList={false} /> */}
 
       <Footer />
     </div>
