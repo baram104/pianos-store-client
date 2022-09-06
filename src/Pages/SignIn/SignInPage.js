@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import FormComp from "../../Components/Form/FormComp";
 import * as api from "../../DAL/api";
 import { formInputs } from "../../DAL/data/formInputsData";
+import AuthContext from "../../store/auth-context";
 export default function SignInPage() {
+  const authCtx = useContext(AuthContext);
+
   const loginFormInputs = {
     username: formInputs.username,
     password: formInputs.password,
