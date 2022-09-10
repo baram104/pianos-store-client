@@ -33,20 +33,22 @@ export default function Product({ isCart, id, isRating, isOnWishList }) {
                 {piano.name}
               </Link>
             </Card.Title>
-            <Card.Text className="text-primary">${piano.unit_price}</Card.Text>
+            <Card.Text className="text-primary">
+              ${piano.unit_price || piano.unitPrice}
+            </Card.Text>
             <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
             {isRating ? (
               <Rating name="simple-controlled" />
             ) : (
               <Row className="justify-content-between">
-                {isCart && piano.units_in_stock ? (
+                {isCart && piano.unitsInStock !== 0 ? (
                   <Col md={8} xs={8}>
                     <Form.Group>
                       <Form.Control
                         type="number"
                         placeholder="Qty."
                         min={1}
-                        max={piano.units_in_stock}
+                        max={piano.units_in_stock || piano.unitsInStock}
                         className="mb-3"
                       />
                     </Form.Group>
@@ -62,7 +64,7 @@ export default function Product({ isCart, id, isRating, isOnWishList }) {
                     ></img>
                   </span>
                 )}
-                {!piano.units_in_stock && (
+                {!piano.unitsInStock && (
                   <div className="mb-3">
                     <OutOfStockButtons isOnWishList={isOnWishList} />
                   </div>

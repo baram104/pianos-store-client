@@ -11,15 +11,14 @@ import SignInPage from "./Pages/SignIn/SignInPage";
 import SignUpPage from "./Pages/SignUp/SignUpPage";
 import RateOrderPage from "./Pages/RateOrder/RateOrderPage";
 import { useContext } from "react";
-import AuthContext from "./store/auth-context";
+import UserContext from "./store/user-context";
 import Protector from "./Components/Protector/Protector";
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-  const handleFormDetails = (details) => {
-    console.log(details);
-  };
-
+  const {
+    userDetails: { isLoggedIn },
+  } = useContext(UserContext);
+  const { userCart } = useContext(UserContext);
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />

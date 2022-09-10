@@ -6,6 +6,7 @@ import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
 import { validateAndUpdateInput } from "../../common/helpers.js";
 import { Link } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 export default function FormComp(props) {
   const [form, setForm] = useState(props.formInputs);
@@ -63,12 +64,23 @@ export default function FormComp(props) {
 
       <Row className="my-5 justify-content-center">
         <Col md={4}>
+          {props.error && (
+            <div className="text-center mb-2 text-danger">{props.error}</div>
+          )}
           {props.isCheckout ? (
             ""
           ) : (
-            <Button className="w-100" type="submit">
-              Submit
-            </Button>
+            <>
+              {!props.loading ? (
+                <Button className="w-100" type="submit">
+                  Submit
+                </Button>
+              ) : (
+                <div className="text-center text-primary">
+                  <Spinner animation="grow"></Spinner>
+                </div>
+              )}
+            </>
           )}
         </Col>
       </Row>
