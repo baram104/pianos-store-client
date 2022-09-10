@@ -32,14 +32,14 @@ export const UserContextProvider = (props) => {
     const wishList = await api.getFavProducts();
     setUserFavProducts(wishList);
   };
-  const loginHandler = async (username) => {
+  const loginHandler = async (username, firstName) => {
     await api.getCart().then((data) => setUserCart(data));
-    setUserDetails({ username, isLoggedIn: true });
+    setUserDetails({ username, isLoggedIn: true, firstName });
   };
 
   const addToCart = async (id, quantity = 1) => {
     authCheck();
-    const res = await api.addPianoToCart(id, quantity);
+    await api.addPianoToCart(id, quantity);
     updateCart();
   };
   const removeFromCart = async (id) => {

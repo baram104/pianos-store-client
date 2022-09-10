@@ -16,7 +16,7 @@ import emptyHeart from "../../assets/emptyheart.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import OutOfStockButtons from "../../Components/OutOfStockButtons/OutOfStockButtons";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import UserContext from "../../store/user-context";
 
 export default function ProductsPage() {
@@ -48,7 +48,6 @@ export default function ProductsPage() {
     }
     nav(`/products/sort/${value}`);
   };
-  useEffect(() => {}, [ctx.userCart, ctx.userFavProducts]);
 
   if (!loadingSortedPianos && params.sortCondition) {
     pianos = sortedPianos;

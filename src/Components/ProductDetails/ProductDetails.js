@@ -8,9 +8,13 @@ import { Carousel, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
+import { useContext, useRef } from "react";
+import UserContext from "../../store/user-context";
 
 function ProductDetails(props) {
+  const quantityRef = useRef(1);
   const params = useParams();
+  const ctx = useContext(UserContext);
   const {
     loading: loadingPiano,
     data: piano,
@@ -69,13 +73,34 @@ function ProductDetails(props) {
                             type="number"
                             style={{ maxWidth: "12vw" }}
                             min={1}
+                            defaultValue={1}
                             className="form-control"
                             aria-label="Quantity"
+                            ref={quantityRef}
                             max={piano.unitsInStock}
                           />
-                          <button className="btn btn-primary mx-3 rounded-0">
-                            Add to cart
-                          </button>
+                          {!ctx.userCart.find(
+                            (product) => product.id === piano.id
+                          ) ? (
+                            <button
+                              onClick={() => {
+                                ctx.addToCart(
+                                  piano.id,
+                                  Number(quantityRef.current.value)
+                                );
+                              }}
+                              className="btn btn-primary mx-3 rounded-0"
+                            >
+                              Add to cart
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => ctx.removeFromCart(piano.id)}
+                              className="btn btn-primary mx-3 rounded-0"
+                            >
+                              Remove from cart
+                            </button>
+                          )}
                           {props.isOnWishList ? (
                             <span className={styles.wishlistIconContainer}>
                               <img
@@ -85,10 +110,23 @@ function ProductDetails(props) {
                             </span>
                           ) : (
                             <span className={styles.wishlistIconContainer}>
-                              <img
-                                className={styles.wishlistIcon}
-                                src={emptyHeart}
-                              ></img>
+                              {!ctx.userFavProducts.find(
+                                (product) => product.id === piano.id
+                              ) ? (
+                                <img
+                                  onClick={() => ctx.addToWishList(piano.id)}
+                                  className={styles.wishlistIcon}
+                                  src={emptyHeart}
+                                ></img>
+                              ) : (
+                                <img
+                                  onClick={() =>
+                                    ctx.removeFromWishList(piano.id)
+                                  }
+                                  className={styles.wishlistIcon}
+                                  src={filledHeart}
+                                ></img>
+                              )}
                             </span>
                           )}
                         </div>

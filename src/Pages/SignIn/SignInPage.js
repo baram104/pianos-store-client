@@ -26,7 +26,7 @@ export default function SignInPage() {
     if (res.logged) {
       const favProducts = await api.getFavProducts();
       ctx.setUserFavProducts(favProducts);
-      ctx.onLogin(res.username);
+      ctx.onLogin(res.username, res.firstName);
       nav("/");
     } else {
       setError("Login Failed");
