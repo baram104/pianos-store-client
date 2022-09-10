@@ -10,10 +10,12 @@ export const getPianos = async (category_id) => {
   return res.json();
 };
 
-export const getPianosByQuery = async (key, value) => {
+export const getPianosBySort = async (sortCondition) => {
   let res;
-  if (key) {
-    res = await fetch(`http://localhost:3100/api/products?${key}=${value}`);
+  if (sortCondition) {
+    res = await fetch(
+      `http://localhost:3100/api/products/sort?condition=${sortCondition}`
+    );
   } else {
     res = await fetch("http://localhost:3100/api/products");
   }
