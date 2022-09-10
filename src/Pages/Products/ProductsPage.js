@@ -105,10 +105,14 @@ export default function ProductsPage() {
                         </span>
                       </Card.Title>
                       <Card.Text className="text-primary">
-                        ${piano.unit_price}
+                        ${piano.unitPrice}
                       </Card.Text>
                       <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
-                      <Rating name="read-only" value={3} readOnly />
+                      <Rating
+                        name="read-only"
+                        value={piano.avgRating}
+                        readOnly
+                      />
                     </div>
                     <div className="mt-2">
                       <div className="text-center">
