@@ -4,7 +4,7 @@ import Product from "../../Components/Product/Product";
 import UserContext from "../../store/user-context";
 
 export default function CartPage() {
-  const { userCart, setUserCart, userDetails } = useContext(UserContext);
+  const { userCart, userDetails } = useContext(UserContext);
   return (
     <Container as={Card} className="p-3 my-3">
       <Row>
@@ -13,7 +13,12 @@ export default function CartPage() {
       <Row className="d-flex justify-content-center">
         {userCart.length ? (
           userCart.map((product) => (
-            <Product key={product.id} id={product.id} isCart={true} />
+            <Product
+              quantity={product.quantity}
+              key={product.id}
+              id={product.id}
+              isCart={true}
+            />
           ))
         ) : (
           <div>Cart Is Empty</div>
@@ -25,7 +30,15 @@ export default function CartPage() {
         </Col>
         <Col className="justify-content-center d-flex">
           <Col className="text-center">
-            <h3 className="text-primary">Summary $1200</h3>
+            <h3 className="text-primary">
+              Summary $
+              {userCart.length
+                ? userCart.reduce(
+                    (total, currProd) => total + Number(currProd.unit_price),
+                    0
+                  )
+                : 0}
+            </h3>
             <Button>Checkout</Button>
           </Col>
         </Col>

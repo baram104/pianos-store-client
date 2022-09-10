@@ -1,13 +1,15 @@
+import { useContext } from "react";
 import Product from "../../Components/Product/Product";
+import UserContext from "../../store/user-context";
 
 export default function MyWishList() {
+  const ctx = useContext(UserContext);
+
   return (
     <div className="container">
-      <Product isOnWishList={true} id="3" />
-      <Product isOnWishList={true} id="2" />
-      <Product isOnWishList={true} id="2" />
-      <Product isOnWishList={true} id="2" />
-      <Product isOnWishList={true} id="2" />
+      {ctx.userFavProducts.map((product) => (
+        <Product isOnWishList={true} id={product.id} />
+      ))}
     </div>
   );
 }

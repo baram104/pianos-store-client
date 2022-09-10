@@ -8,7 +8,22 @@ import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
 import filledHeart from "../../assets/filledheart.png";
-export default function Product({ isCart, id, isRating, isOnWishList }) {
+import { useContext, useEffect } from "react";
+import UserContext from "../../store/user-context";
+export default function Product({
+  isCart,
+  id,
+  isRating,
+  isOnWishList,
+  quantity,
+}) {
+  const {
+    removeFromWishList,
+    userFavProducts,
+    updateCartProd,
+    removeFromCart,
+  } = useContext(UserContext);
+
   const {
     loading: pianoLoading,
     data: piano,
@@ -45,9 +60,13 @@ export default function Product({ isCart, id, isRating, isOnWishList }) {
                   <Col md={8} xs={8}>
                     <Form.Group>
                       <Form.Control
+                        onChange={(e) =>
+                          updateCartProd(piano.id, e.target.value)
+                        }
                         type="number"
                         placeholder="Qty."
                         min={1}
+                        value={quantity}
                         max={piano.units_in_stock || piano.unitsInStock}
                         className="mb-3"
                       />
@@ -59,6 +78,7 @@ export default function Product({ isCart, id, isRating, isOnWishList }) {
                 {isOnWishList && (
                   <span className={styles.wishlistIconContainer}>
                     <img
+                      onClick={() => removeFromWishList(piano.id)}
                       className={styles.wishlistIcon}
                       src={filledHeart}
                     ></img>
@@ -71,7 +91,10 @@ export default function Product({ isCart, id, isRating, isOnWishList }) {
                 )}
                 {isCart && (
                   <Col md={5}>
-                    <Button variant="secondary">
+                    <Button
+                      onClick={() => removeFromCart(piano.id)}
+                      variant="secondary"
+                    >
                       Delete
                       <MdDelete />
                     </Button>
