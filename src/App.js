@@ -30,6 +30,10 @@ function App() {
             path="category/:category_id"
             element={<ProductsPage></ProductsPage>}
           ></Route>
+          <Route
+            path="sort/:sortCondition"
+            element={<ProductsPage></ProductsPage>}
+          ></Route>
         </Route>
         <Route path="/products/:productId" element={<ProductDetails />} />
 

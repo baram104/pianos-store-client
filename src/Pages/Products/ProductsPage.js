@@ -15,11 +15,13 @@ import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { useRef } from "react";
+import OutOfStockButtons from "../../Components/OutOfStockButtons/OutOfStockButtons";
 
 export default function ProductsPage() {
   const params = useParams();
 
-  const {
+  let {
     loading: loadingPianos,
     data: pianos,
     error: pianosError,
@@ -30,6 +32,21 @@ export default function ProductsPage() {
     data: categories,
     error: categoriesError,
   } = useFetch(api.getCategories);
+
+  const {
+    loading: loadingSortedPianos,
+    data: sortedPianos,
+    error: sortedPianosError,
+  } = useFetch(api.getPianosBySort, params.sortCondition, params.sortCondition);
+
+  const onChangeFilterHandler = ({ target: { value } }) => {
+    window.location = `/products/sort/${value}`;
+  };
+
+  if (!loadingSortedPianos && params.sortCondition) {
+    pianos = sortedPianos;
+    console.log(pianos);
+  }
 
   return (
     <Container fluid className="align-items-baseline">
@@ -62,13 +79,16 @@ export default function ProductsPage() {
         <Col md={9} className="py-4 px-5">
           <Row className="mt-0">
             <Col xs={3} className="mt-0">
-              <Form.Select aria-label="Default select example">
+              <Form.Select
+                onChange={onChangeFilterHandler}
+                aria-label="Default select example"
+              >
                 <option>Sort by</option>
-                <option value="1">Price low to high</option>
-                <option value="2">Price high to low</option>
-                <option value="3">Newest products</option>
-                <option value="4">Oldest products</option>
-                <option value="5">Default</option>
+                <option value="low-to-high">Price low to high</option>
+                <option value="high-to-low">Price high to low</option>
+                <option value="popular">Most Popular</option>
+                <option value="rated">Most Rated</option>
+                <option value="default">Default</option>
               </Form.Select>
             </Col>
           </Row>
@@ -105,21 +125,27 @@ export default function ProductsPage() {
                         </span>
                       </Card.Title>
                       <Card.Text className="text-primary">
-                        ${piano.unitPrice}
+                        ${piano.unitPrice || piano.unit_price}
                       </Card.Text>
                       <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
                       <Rating
                         name="read-only"
-                        value={piano.avgRating}
+                        value={piano.avgRating || piano.avg_rating}
                         readOnly
                       />
                     </div>
                     <div className="mt-2">
                       <div className="text-center">
-                        <Button variant="primary" className="m-1">
-                          But it Now
-                        </Button>
-                        <Button variant="secondary">Add to Cart</Button>
+                        {(piano.units_in_stock && piano.unitsInStock) !== 0 ? (
+                          <>
+                            <Button variant="primary" className="m-1">
+                              But it Now
+                            </Button>
+                            <Button variant="secondary">Add to Cart</Button>
+                          </>
+                        ) : (
+                          <OutOfStockButtons></OutOfStockButtons>
+                        )}
                       </div>
                     </div>
                   </Card.Body>
