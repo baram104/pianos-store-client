@@ -13,13 +13,16 @@ import * as api from "../../DAL/api";
 import styles from "./ProductsPage.module.css";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { useRef } from "react";
 import OutOfStockButtons from "../../Components/OutOfStockButtons/OutOfStockButtons";
+import { useContext, useEffect } from "react";
+import UserContext from "../../store/user-context";
 
 export default function ProductsPage() {
   const params = useParams();
+  const nav = useNavigate();
+  const ctx = useContext(UserContext);
 
   let {
     loading: loadingPianos,
@@ -40,12 +43,15 @@ export default function ProductsPage() {
   } = useFetch(api.getPianosBySort, params.sortCondition, params.sortCondition);
 
   const onChangeFilterHandler = ({ target: { value } }) => {
-    window.location = `/products/sort/${value}`;
+    if (value === "default") {
+      nav("/");
+    }
+    nav(`/products/sort/${value}`);
   };
+  useEffect(() => {}, [ctx.userCart, ctx.userFavProducts]);
 
   if (!loadingSortedPianos && params.sortCondition) {
     pianos = sortedPianos;
-    console.log(pianos);
   }
 
   return (
@@ -83,12 +89,11 @@ export default function ProductsPage() {
                 onChange={onChangeFilterHandler}
                 aria-label="Default select example"
               >
-                <option>Sort by</option>
+                <option value="default">Default</option>
                 <option value="low-to-high">Price low to high</option>
                 <option value="high-to-low">Price high to low</option>
                 <option value="popular">Most Popular</option>
                 <option value="rated">Most Rated</option>
-                <option value="default">Default</option>
               </Form.Select>
             </Col>
           </Row>
@@ -99,7 +104,7 @@ export default function ProductsPage() {
               {pianos.map((piano) => (
                 <Card
                   key={piano.id}
-                  style={{ width: "20rem", height: "35rem" }}
+                  style={{ width: "20rem", height: "37rem" }}
                   className="mb-3 px-0"
                 >
                   <Card.Img
@@ -118,10 +123,21 @@ export default function ProductsPage() {
                           {piano.name}
                         </Link>
                         <span className={styles.wishlistIconContainer}>
-                          <img
-                            className={styles.wishlistIcon}
-                            src={emptyHeart}
-                          ></img>
+                          {!ctx.userFavProducts.find(
+                            (product) => product.id === piano.id
+                          ) ? (
+                            <img
+                              onClick={() => ctx.addToWishList(piano.id)}
+                              className={styles.wishlistIcon}
+                              src={emptyHeart}
+                            ></img>
+                          ) : (
+                            <img
+                              onClick={() => ctx.removeFromWishList(piano.id)}
+                              className={styles.wishlistIcon}
+                              src={filledHeart}
+                            ></img>
+                          )}
                         </span>
                       </Card.Title>
                       <Card.Text className="text-primary">
@@ -141,7 +157,24 @@ export default function ProductsPage() {
                             <Button variant="primary" className="m-1">
                               But it Now
                             </Button>
-                            <Button variant="secondary">Add to Cart</Button>
+
+                            {!ctx.userCart.find(
+                              (product) => product.id === piano.id
+                            ) ? (
+                              <Button
+                                onClick={() => ctx.addToCart(piano.id)}
+                                variant="secondary"
+                              >
+                                Add to Cart
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => ctx.removeFromCart(piano.id)}
+                                variant="danger"
+                              >
+                                Remove from Cart
+                              </Button>
+                            )}
                           </>
                         ) : (
                           <OutOfStockButtons></OutOfStockButtons>

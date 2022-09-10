@@ -1,15 +1,23 @@
+import { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
+import UserContext from "../../store/user-context";
 
 export default function CartPage() {
+  const { userCart, setUserCart, userDetails } = useContext(UserContext);
   return (
     <Container as={Card} className="p-3 my-3">
       <Row>
-        <h2>Hello Bar, Your Cart</h2>
+        <h2>Hello {userDetails.username}, Your Cart</h2>
       </Row>
       <Row className="d-flex justify-content-center">
-        <Product id="3" isCart={true} />
-        <Product id="1" isCart={true} />
+        {userCart.length ? (
+          userCart.map((product) => (
+            <Product key={product.id} id={product.id} isCart={true} />
+          ))
+        ) : (
+          <div>Cart Is Empty</div>
+        )}
       </Row>
       <Row className="align-items-end d-flex">
         <Col className="justify-content-center d-flex">
