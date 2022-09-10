@@ -43,14 +43,14 @@ function ProductDetails(props) {
                   <Col>
                     <h3 className="card-title text-dark">{piano.name}</h3>
                     <h3 className="card-text text-primary">
-                      <p>${piano.unit_price}</p>
+                      <p>${piano.unitPrice}</p>
                     </h3>
                     <p className="card-text">{piano.description}</p>
-                    <Rating name="read-only" value={3} readOnly />
+                    <Rating name="read-only" value={piano.avgRating} readOnly />
                   </Col>
 
                   <div className="col">
-                    {!piano.units_in_stock ? (
+                    {!piano.unitsInStock ? (
                       <OutOfStockButtons />
                     ) : (
                       <div>
@@ -59,7 +59,7 @@ function ProductDetails(props) {
                         </button>
                       </div>
                     )}
-                    {piano.units_in_stock ? (
+                    {piano.unitsInStock ? (
                       <div className="col mt-3">
                         <div className="input-group">
                           <span className="input-group-text" id="basic-addon1">
@@ -71,7 +71,7 @@ function ProductDetails(props) {
                             min={1}
                             className="form-control"
                             aria-label="Quantity"
-                            max={piano.units_in_stock}
+                            max={piano.unitsInStock}
                           />
                           <button className="btn btn-primary mx-3 rounded-0">
                             Add to cart
