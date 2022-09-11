@@ -69,7 +69,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/ordersummary"
+          path="/ordersummary/:orderId"
           element={
             <Protector isLoggedIn={isLoggedIn}>
               <OrderSummaryPage />

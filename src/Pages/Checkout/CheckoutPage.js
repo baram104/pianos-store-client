@@ -4,10 +4,11 @@ import Product from "../../Components/Product/Product";
 import FormComp from "../../Components/Form/FormComp";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../store/user-context";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as api from "../../DAL/api";
 
 export default function CheckoutPage() {
+  const nav = useNavigate();
   const params = useParams();
   const [products, setProducts] = useState([]);
   const ctx = useContext(UserContext);
@@ -32,11 +33,15 @@ export default function CheckoutPage() {
     } = addressForm;
     if (products.length) {
       await api.updateUserAddress(cityValue, streetValue, zipcodeValue);
-      await api.placeOrder(
+      const res = await api.placeOrder(
         products.map((product) => {
           return { quantity: product.quantity || 1, product: product.id };
         })
       );
+
+      if (res.orderId) {
+        nav(`/ordersummary/${res.orderId}`);
+      }
     }
   };
 

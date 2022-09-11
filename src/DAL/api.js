@@ -164,6 +164,7 @@ export const placeOrder = async (products) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(products),
   });
+  return res.json();
 };
 
 export const getRateOrder = async (orderId) => {
@@ -180,4 +181,11 @@ export const submitRateOrder = async (orderId, ratedProducts) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ratedProducts, orderId }),
   });
+};
+
+export const getUserDetails = async () => {
+  const res = await fetch(`http://localhost:3100/api/users/profile`, {
+    credentials: "include",
+  });
+  return res.json();
 };
