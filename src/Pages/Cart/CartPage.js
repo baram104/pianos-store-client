@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
 import UserContext from "../../store/user-context";
+import { Link, useLocation } from "react-router-dom";
 
 export default function CartPage() {
+  const location = useLocation();
   const { userCart, userDetails } = useContext(UserContext);
   return (
     <Container as={Card} className="p-3 my-3">
@@ -39,7 +41,9 @@ export default function CartPage() {
                   )
                 : 0}
             </h3>
-            <Button>Checkout</Button>
+            <Link to="/checkout">
+              <Button>Checkout</Button>
+            </Link>
           </Col>
         </Col>
       </Row>

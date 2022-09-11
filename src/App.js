@@ -61,7 +61,15 @@ function App() {
           }
         ></Route>
         <Route
-          path="/ordersummary"
+          path="/checkout/:prodId"
+          element={
+            <Protector isLoggedIn={isLoggedIn}>
+              <CheckoutPage />
+            </Protector>
+          }
+        ></Route>
+        <Route
+          path="/ordersummary/:orderId"
           element={
             <Protector isLoggedIn={isLoggedIn}>
               <OrderSummaryPage />

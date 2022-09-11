@@ -153,9 +153,11 @@ export default function ProductsPage() {
                       <div className="text-center">
                         {(piano.units_in_stock && piano.unitsInStock) !== 0 ? (
                           <>
-                            <Button variant="primary" className="m-1">
-                              But it Now
-                            </Button>
+                            <Link to={`/checkout/${piano.id}`}>
+                              <Button variant="primary" className="m-1">
+                                But it Now
+                              </Button>
+                            </Link>
 
                             {!ctx.userCart.find(
                               (product) => product.id === piano.id
