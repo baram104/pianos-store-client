@@ -104,6 +104,15 @@ export const register = async (
   });
   return res;
 };
+export const updateUserAddress = async (city, street, zipcode) => {
+  const res = await fetch(`http://localhost:3100/api/users`, {
+    method: "PATCH",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ city, street, zipcode }),
+  });
+  return res;
+};
 
 export const deleteFavProd = async (prodId) => {
   const res = await fetch(

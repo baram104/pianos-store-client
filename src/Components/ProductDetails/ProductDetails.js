@@ -10,6 +10,7 @@ import { Rating } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
 import { useContext, useRef } from "react";
 import UserContext from "../../store/user-context";
+import { Link } from "react-router-dom";
 
 function ProductDetails(props) {
   const quantityRef = useRef(1);
@@ -58,9 +59,11 @@ function ProductDetails(props) {
                       <OutOfStockButtons />
                     ) : (
                       <div>
-                        <button className="btn btn-dark mt-3 rounded-0">
-                          Buy it now
-                        </button>
+                        <Link to={`/checkout/${piano.id}`}>
+                          <button className="btn btn-dark mt-3 rounded-0">
+                            Buy it now
+                          </button>
+                        </Link>
                       </div>
                     )}
                     {piano.unitsInStock ? (

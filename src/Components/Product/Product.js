@@ -89,7 +89,7 @@ export default function Product({
                     <OutOfStockButtons isOnWishList={isOnWishList} />
                   </div>
                 )}
-                {isCart && (
+                {isCart ? (
                   <Col md={5}>
                     <Button
                       onClick={() => removeFromCart(piano.id)}
@@ -99,6 +99,8 @@ export default function Product({
                       <MdDelete />
                     </Button>
                   </Col>
+                ) : (
+                  <div>{quantity}</div>
                 )}
               </Row>
             )}
