@@ -13,7 +13,10 @@ export const UserContextProvider = (props) => {
   });
   const [userCart, setUserCart] = useState([]);
   const [userFavProducts, setUserFavProducts] = useState([]);
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
+    await api.logout();
+    setUserCart([]);
+    setUserFavProducts([]);
     setUserDetails({ username: "", isLoggedIn: false });
   };
 
@@ -33,7 +36,10 @@ export const UserContextProvider = (props) => {
     setUserFavProducts(wishList);
   };
   const loginHandler = async (username, firstName) => {
-    await api.getCart().then((data) => setUserCart(data));
+    try {
+      await api.getCart().then((data) => setUserCart(data));
+    } catch (error) {}
+
     setUserDetails({ username, isLoggedIn: true, firstName });
   };
 

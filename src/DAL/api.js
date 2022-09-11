@@ -189,3 +189,9 @@ export const getUserDetails = async () => {
   });
   return res.json();
 };
+
+export const logout = async () => {
+  await fetch(`http://localhost:3100/api/users/logout`, {
+    credentials: "include",
+  });
+};
