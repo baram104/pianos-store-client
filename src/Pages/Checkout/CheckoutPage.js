@@ -32,16 +32,15 @@ export default function CheckoutPage() {
       zipcode: { value: zipcodeValue },
     } = addressForm;
     if (products.length) {
-      await api.updateUserAddress(cityValue, streetValue, zipcodeValue);
       const res = await api.placeOrder(
         products.map((product) => {
           return { quantity: product.quantity || 1, product: product.id };
         })
       );
-
-      if (res.orderId) {
-        nav(`/ordersummary/${res.orderId}`);
-      }
+      await api.updateUserAddress(cityValue, streetValue, zipcodeValue);
+      nav(`/ordersummary/${res.orderId}`, {
+        state: { cityValue, streetValue, zipcodeValue },
+      });
     }
   };
 
@@ -66,7 +65,7 @@ export default function CheckoutPage() {
               <FormComp
                 formTitle="Ship To"
                 isCheckout={true}
-                handleFormDetails={() => {}}
+                handleFormDetails={handleSubmit}
                 formInputs={addressForm}
               />
             </Col>
