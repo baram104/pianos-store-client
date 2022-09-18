@@ -41,6 +41,7 @@ export default function CheckoutPage() {
       nav(`/ordersummary/${res.orderId}`, {
         state: { cityValue, streetValue, zipcodeValue },
       });
+      ctx.deleteCart();
     }
   };
 
@@ -74,7 +75,9 @@ export default function CheckoutPage() {
                 Summary $
                 {products.reduce(
                   (total, product) =>
-                    total + Number(product.unit_price || product.unitPrice),
+                    total +
+                    Number(product.unit_price || product.unitPrice) *
+                      product.quantity,
                   0
                 )}
               </h2>

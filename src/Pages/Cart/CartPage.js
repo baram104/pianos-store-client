@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
-import UserContext from "../../store/user-context";
 import { Link, useLocation } from "react-router-dom";
+import UserContext from "../../store/user-context";
 
 export default function CartPage() {
   const location = useLocation();
-  const { userCart, userDetails } = useContext(UserContext);
+  const { userCart, userDetails, deleteCart } = useContext(UserContext);
+
   return (
     <Container as={Card} className="p-3 my-3">
       <Row>
@@ -28,7 +29,9 @@ export default function CartPage() {
       </Row>
       <Row className="align-items-end d-flex">
         <Col className="justify-content-center d-flex">
-          <Button variant="danger">Delete Cart</Button>
+          <Button onClick={deleteCart} variant="danger">
+            Delete Cart
+          </Button>
         </Col>
         <Col className="justify-content-center d-flex">
           <Col className="text-center">
@@ -36,7 +39,8 @@ export default function CartPage() {
               Summary $
               {userCart.length
                 ? userCart.reduce(
-                    (total, currProd) => total + Number(currProd.unit_price),
+                    (total, currProd) =>
+                      total + Number(currProd.unit_price) * currProd.quantity,
                     0
                   )
                 : 0}

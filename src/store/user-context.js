@@ -48,6 +48,13 @@ export const UserContextProvider = (props) => {
     await api.addPianoToCart(id, quantity);
     updateCart();
   };
+
+  const deleteCart = async () => {
+    console.log("hi");
+    authCheck();
+    await api.deleteCart();
+    updateCart();
+  };
   const removeFromCart = async (id) => {
     authCheck();
     await api.deleteCartProd(id);
@@ -84,6 +91,7 @@ export const UserContextProvider = (props) => {
         setUserFavProducts,
         addToWishList,
         removeFromWishList,
+        deleteCart,
       }}
     >
       {props.children}
