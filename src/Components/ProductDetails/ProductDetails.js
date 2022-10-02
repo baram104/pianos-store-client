@@ -29,10 +29,9 @@ function ProductDetails(props) {
           <div className="row g-0 my-0">
             <div className="col-lg-5 col-md-12">
               <Carousel>
-                {piano.imgs.map((img) => (
-                  <Carousel.Item>
+                {piano.imgs.map((img, idx) => (
+                  <Carousel.Item key={idx}>
                     <img
-                      key={piano.id}
                       className="d-block w-100"
                       src={`http://localhost:3100/images/pianos/${piano.id}/${img}`}
                       alt={img}

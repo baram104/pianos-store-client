@@ -25,6 +25,7 @@ export const UserContextProvider = (props) => {
       nav("/login");
       return;
     }
+    return true;
   };
   const updateCart = async () => {
     const cart = await api.getCart();
@@ -44,35 +45,34 @@ export const UserContextProvider = (props) => {
   };
 
   const addToCart = async (id, quantity = 1) => {
-    authCheck();
+    if (!authCheck()) return;
     await api.addPianoToCart(id, quantity);
     updateCart();
   };
 
   const deleteCart = async () => {
-    console.log("hi");
-    authCheck();
+    if (!authCheck()) return;
     await api.deleteCart();
     updateCart();
   };
   const removeFromCart = async (id) => {
-    authCheck();
+    if (!authCheck()) return;
     await api.deleteCartProd(id);
     updateCart();
   };
   const updateCartProd = async (id, quantity) => {
-    authCheck();
+    if (!authCheck()) return;
     await api.updateCartProd(id, quantity);
     updateCart();
   };
 
   const addToWishList = async (id) => {
-    authCheck();
+    if (!authCheck()) return;
     await api.addFavProd(id);
     updateWishList();
   };
   const removeFromWishList = async (id) => {
-    authCheck();
+    if (!authCheck()) return;
     await api.deleteFavProd(id);
     updateWishList();
   };

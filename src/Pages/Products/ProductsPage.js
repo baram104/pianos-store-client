@@ -151,7 +151,7 @@ export default function ProductsPage() {
                     </div>
                     <div className="mt-2">
                       <div className="text-center">
-                        {(piano.units_in_stock && piano.unitsInStock) !== 0 ? (
+                        {piano.units_in_stock !== 0 ? (
                           <>
                             <Link to={`/checkout/${piano.id}`}>
                               <Button variant="primary" className="m-1">

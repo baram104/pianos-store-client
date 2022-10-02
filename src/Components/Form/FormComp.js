@@ -97,9 +97,6 @@ export default function FormComp(props) {
             ""
           )}
         </Col>
-        <Col className="text-end">
-          {props.formTitle === "Sign In" ? <a href="">Forgot password?</a> : ""}
-        </Col>
       </Row>
     </Form>
   );
