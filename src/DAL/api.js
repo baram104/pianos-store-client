@@ -22,6 +22,18 @@ export const getPianosBySort = async (sortCondition) => {
   return res.json();
 };
 
+export const getPianosBySearch = async (searchTerm) => {
+  let res;
+  if (searchTerm) {
+    res = await fetch(
+      `http://localhost:3100/api/products/search?term=${searchTerm}`
+    );
+  } else {
+    res = await fetch("http://localhost:3100/api/products");
+  }
+  return res.json();
+};
+
 export const getCategories = async () => {
   const res = await fetch("http://localhost:3100/api/categories");
   return res.json();

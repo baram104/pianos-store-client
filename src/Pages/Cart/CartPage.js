@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserContext from "../../store/user-context";
 
 export default function CartPage() {
-  const location = useLocation();
   const { userCart, userDetails, deleteCart } = useContext(UserContext);
 
   return (
