@@ -95,6 +95,16 @@ export const loginHandler = (username, firstName) => {
   };
 };
 
+export const logoutHandler = () => {
+  return async (dispatch) => {
+    await api.logout();
+    dispatch(wishListSlice.actions.updateWishList([]));
+    dispatch(cartSlice.actions.updateCart([]));
+    dispatch(authSlice.actions.setUserDetails({ username: "", firstName: "" }));
+    dispatch(authSlice.actions.setIsLoggedIn(false));
+  };
+};
+
 export const store = configureStore({
   reducer: {
     cart: cartSlice.reducer,

@@ -26,8 +26,8 @@ export default function SignInPage() {
     );
 
     if (res.logged) {
-      const favProducts = await api.getFavProducts();
-      ctx.setUserFavProducts(favProducts);
+      // const favProducts = await api.getFavProducts();
+      // ctx.setUserFavProducts(favProducts);
       // ctx.onLogin(res.username, res.firstName);
       dispatch(loginHandler(res.username, res.firstName));
       nav("/");

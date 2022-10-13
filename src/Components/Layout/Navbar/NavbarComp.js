@@ -4,11 +4,13 @@ import { Navbar, Container, Nav, Col, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../../store/user-context";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutHandler } from "../../../store/redux-store";
 function NavbarComp() {
   const ctx = useContext(UserContext);
   const cart = useSelector((state) => state.cart);
   const userDetails = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <Navbar bg="secondary" expand="lg">
       <Container fluid>
@@ -30,7 +32,7 @@ function NavbarComp() {
                   <a
                     className="nav-link"
                     style={{ cursor: "pointer" }}
-                    onClick={ctx.onLogout}
+                    onClick={() => dispatch(logoutHandler())}
                   >
                     Logout
                   </a>

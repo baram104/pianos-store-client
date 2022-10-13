@@ -5,10 +5,12 @@ import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import { useContext, useState } from "react";
 import UserContext from "../../store/user-context";
+import { useSelector } from "react-redux";
 
 function MyAccount() {
   const [displayWishList, setDisplayWishList] = useState(false);
   const ctx = useContext(UserContext);
+  const userDetails = useSelector(state=>state.auth)
 
   const changePasswordForm = {
     oldPassword: formInputs.oldPassword,
@@ -29,7 +31,7 @@ function MyAccount() {
         <div className="col-lg-3 col-12">
           <Col>
             <p className="fs-3">
-              <strong>Hello, {ctx.userDetails.firstName}</strong>
+              <strong>Hello, {userDetails.firstName}</strong>
             </p>
             <div className="line"></div>
           </Col>

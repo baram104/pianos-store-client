@@ -33,7 +33,16 @@ export default function ProductsPage() {
   const ctx = useContext(UserContext);
   const cartState = useSelector((state) => state.cart);
   const wishListState = useSelector((state) => state.wishList);
+  const userDetails = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const authCheck = () => {
+    if (!userDetails.isLoggedIn) {
+      nav("/login");
+      return;
+    }
+    return true;
+  };
 
   let {
     loading: loadingPianos,
@@ -137,15 +146,23 @@ export default function ProductsPage() {
                             (product) => product.id === piano.id
                           ) ? (
                             <img
-                              onClick={() => dispatch(addToWishList(piano.id))}
+                              onClick={() => {
+                                if (!authCheck()) {
+                                  return;
+                                }
+                                dispatch(addToWishList(piano.id));
+                              }}
                               className={styles.wishlistIcon}
                               src={emptyHeart}
                             ></img>
                           ) : (
                             <img
-                              onClick={() =>
-                                dispatch(removeFromWishList(piano.id))
-                              }
+                              onClick={() => {
+                                if (!authCheck()) {
+                                  return;
+                                }
+                                dispatch(removeFromWishList(piano.id));
+                              }}
                               className={styles.wishlistIcon}
                               src={filledHeart}
                             ></img>
@@ -176,18 +193,26 @@ export default function ProductsPage() {
                               (product) => product.id === piano.id
                             ) ? (
                               <Button
-                                onClick={() =>
-                                  dispatch(addItemToCart(piano.id))
-                                }
+                                onClick={() => {
+                                  {
+                                    if (!authCheck()) {
+                                      return;
+                                    }
+                                    dispatch(addItemToCart(piano.id));
+                                  }
+                                }}
                                 variant="secondary"
                               >
                                 Add to Cart
                               </Button>
                             ) : (
                               <Button
-                                onClick={() =>
-                                  dispatch(removeFromCart(piano.id))
-                                }
+                                onClick={() => {
+                                  if (!authCheck()) {
+                                    return;
+                                  }
+                                  dispatch(removeFromCart(piano.id));
+                                }}
                                 variant="danger"
                               >
                                 Remove from Cart
