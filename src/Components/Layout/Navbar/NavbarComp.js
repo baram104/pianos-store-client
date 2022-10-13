@@ -4,8 +4,11 @@ import { Navbar, Container, Nav, Col, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../../store/user-context";
+import { useSelector } from "react-redux";
 function NavbarComp() {
   const ctx = useContext(UserContext);
+  const cart = useSelector((state) => state.cart);
+  const userDetails = useSelector((state) => state.auth);
   return (
     <Navbar bg="secondary" expand="lg">
       <Container fluid>
@@ -19,7 +22,7 @@ function NavbarComp() {
               </NavLink>
             </Col>
             <Col className="d-lg-flex justify-content-lg-end">
-              {ctx.userDetails.isLoggedIn ? (
+              {userDetails.isLoggedIn ? (
                 <>
                   <NavLink className="nav-link" to="/profile">
                     My Profile
@@ -40,7 +43,7 @@ function NavbarComp() {
 
               <NavLink className="nav-link" to="/cart">
                 Cart
-                <Badge className="bg-light mx-1">{ctx.userCart.length}</Badge>
+                <Badge className="bg-light mx-1">{cart.cart.length}</Badge>
               </NavLink>
             </Col>
           </Nav>

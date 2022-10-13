@@ -4,12 +4,15 @@ import * as api from "../../DAL/api";
 import { formInputs } from "../../DAL/data/formInputsData";
 import UserContext from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginHandler } from "../../store/redux-store";
 
 export default function SignInPage() {
   const nav = useNavigate();
   const ctx = useContext(UserContext);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const loginFormInputs = {
     username: formInputs.username,
     password: formInputs.password,
@@ -25,7 +28,8 @@ export default function SignInPage() {
     if (res.logged) {
       const favProducts = await api.getFavProducts();
       ctx.setUserFavProducts(favProducts);
-      ctx.onLogin(res.username, res.firstName);
+      // ctx.onLogin(res.username, res.firstName);
+      dispatch(loginHandler(res.username, res.firstName));
       nav("/");
     } else {
       setError("Login Failed");

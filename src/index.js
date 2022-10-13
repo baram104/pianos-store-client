@@ -7,14 +7,17 @@ import "./assets/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserContextProvider } from "./store/user-context";
-
+import { Provider } from "react-redux";
+import { store } from "./store/redux-store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserContextProvider>
-        <App />
-      </UserContextProvider>
+      <Provider store={store}>
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

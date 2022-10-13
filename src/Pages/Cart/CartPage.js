@@ -3,9 +3,15 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
 import { Link } from "react-router-dom";
 import UserContext from "../../store/user-context";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { deleteCart } from "../../store/redux-store";
 
 export default function CartPage() {
-  const { userCart, userDetails, deleteCart } = useContext(UserContext);
+  // const { userCart, userDetails, deleteCart } = useContext(UserContext);
+  const { cart } = useSelector((state) => state.cart);
+  const userDetails = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   return (
     <Container as={Card} className="p-3 my-3">
@@ -13,8 +19,8 @@ export default function CartPage() {
         <h2>Hello {userDetails.username}, Your Cart</h2>
       </Row>
       <Row className="d-flex justify-content-center">
-        {userCart.length ? (
-          userCart.map((product) => (
+        {cart.length ? (
+          cart.map((product) => (
             <Product
               quantity={product.quantity}
               key={product.id}
@@ -28,7 +34,7 @@ export default function CartPage() {
       </Row>
       <Row className="align-items-end d-flex">
         <Col className="justify-content-center d-flex">
-          <Button onClick={deleteCart} variant="danger">
+          <Button onClick={() => dispatch(deleteCart())} variant="danger">
             Delete Cart
           </Button>
         </Col>
@@ -36,8 +42,8 @@ export default function CartPage() {
           <Col className="text-center">
             <h3 className="text-primary">
               Summary $
-              {userCart.length
-                ? userCart.reduce(
+              {cart.length
+                ? cart.reduce(
                     (total, currProd) =>
                       total + Number(currProd.unit_price) * currProd.quantity,
                     0

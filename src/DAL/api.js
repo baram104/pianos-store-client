@@ -51,6 +51,7 @@ export const addPianoToCart = async (prodId, quantity) => {
     body: JSON.stringify({ prodId, quantity }),
     headers: { "Content-Type": "application/json" },
   });
+  return await res.json();
 };
 
 export const getCart = async () => {

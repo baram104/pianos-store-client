@@ -18,11 +18,22 @@ import useFetch from "../../hooks/useFetch";
 import OutOfStockButtons from "../../Components/OutOfStockButtons/OutOfStockButtons";
 import { useContext } from "react";
 import UserContext from "../../store/user-context";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  addToWishList,
+  removeFromCart,
+  removeFromWishList,
+} from "../../store/redux-store";
 
 export default function ProductsPage() {
   const params = useParams();
   const nav = useNavigate();
   const ctx = useContext(UserContext);
+  const cartState = useSelector((state) => state.cart);
+  const wishListState = useSelector((state) => state.wishList);
+  const dispatch = useDispatch();
 
   let {
     loading: loadingPianos,
@@ -122,17 +133,19 @@ export default function ProductsPage() {
                           {piano.name}
                         </Link>
                         <span className={styles.wishlistIconContainer}>
-                          {!ctx.userFavProducts.find(
+                          {!wishListState.wishList.find(
                             (product) => product.id === piano.id
                           ) ? (
                             <img
-                              onClick={() => ctx.addToWishList(piano.id)}
+                              onClick={() => dispatch(addToWishList(piano.id))}
                               className={styles.wishlistIcon}
                               src={emptyHeart}
                             ></img>
                           ) : (
                             <img
-                              onClick={() => ctx.removeFromWishList(piano.id)}
+                              onClick={() =>
+                                dispatch(removeFromWishList(piano.id))
+                              }
                               className={styles.wishlistIcon}
                               src={filledHeart}
                             ></img>
@@ -159,18 +172,22 @@ export default function ProductsPage() {
                               </Button>
                             </Link>
 
-                            {!ctx.userCart.find(
+                            {!cartState.cart.find(
                               (product) => product.id === piano.id
                             ) ? (
                               <Button
-                                onClick={() => ctx.addToCart(piano.id)}
+                                onClick={() =>
+                                  dispatch(addItemToCart(piano.id))
+                                }
                                 variant="secondary"
                               >
                                 Add to Cart
                               </Button>
                             ) : (
                               <Button
-                                onClick={() => ctx.removeFromCart(piano.id)}
+                                onClick={() =>
+                                  dispatch(removeFromCart(piano.id))
+                                }
                                 variant="danger"
                               >
                                 Remove from Cart

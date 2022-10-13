@@ -32,6 +32,7 @@ export const UserContextProvider = (props) => {
     setUserCart(cart);
   };
 
+
   const updateWishList = async () => {
     const wishList = await api.getFavProducts();
     setUserFavProducts(wishList);
