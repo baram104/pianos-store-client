@@ -4,9 +4,12 @@ import * as api from "../../DAL/api";
 import UserContext from "../../store/user-context";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginHandler } from "../../store/redux-store";
 export default function SignUpPage() {
   const nav = useNavigate();
   const ctx = useContext(UserContext);
+  const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +39,7 @@ export default function SignUpPage() {
       lastName.value
     );
     if (res) {
-      ctx.onLogin(res.username, res.firstName);
+      dispatch(loginHandler(res.username, res.firstName));
       nav("/");
     } else {
       setError("Registration Failed");

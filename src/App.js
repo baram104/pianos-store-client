@@ -13,12 +13,14 @@ import RateOrderPage from "./Pages/RateOrder/RateOrderPage";
 import { useContext } from "react";
 import UserContext from "./store/user-context";
 import Protector from "./Components/Protector/Protector";
+import { useSelector } from "react-redux";
 
 function App() {
-  const {
-    userDetails: { isLoggedIn },
-  } = useContext(UserContext);
+  // const {
+  //   userDetails: { isLoggedIn },
+  // } = useContext(UserContext);
   const { userCart } = useContext(UserContext);
+  const userDetails = useSelector((state) => state.auth);
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />
@@ -39,7 +41,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <MyAccount />
             </Protector>
           }
@@ -47,7 +49,7 @@ function App() {
         <Route
           path="/cart"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <CartPage />
             </Protector>
           }
@@ -55,7 +57,7 @@ function App() {
         <Route
           path="/checkout"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <CheckoutPage />
             </Protector>
           }
@@ -63,7 +65,7 @@ function App() {
         <Route
           path="/checkout/:prodId"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <CheckoutPage />
             </Protector>
           }
@@ -71,7 +73,7 @@ function App() {
         <Route
           path="/ordersummary/:orderId"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <OrderSummaryPage />
             </Protector>
           }
@@ -81,7 +83,7 @@ function App() {
         <Route
           path="/rate-order"
           element={
-            <Protector isLoggedIn={isLoggedIn}>
+            <Protector isLoggedIn={userDetails.isLoggedIn}>
               <RateOrderPage />
             </Protector>
           }

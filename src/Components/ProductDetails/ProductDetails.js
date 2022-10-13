@@ -11,11 +11,22 @@ import useFetch from "../../hooks/useFetch";
 import { useContext, useRef } from "react";
 import UserContext from "../../store/user-context";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToCart,
+  addToWishList,
+  removeFromCart,
+  removeFromWishList,
+} from "../../store/redux-store";
 
 function ProductDetails(props) {
   const quantityRef = useRef(1);
   const params = useParams();
   const ctx = useContext(UserContext);
+  const { cart } = useSelector((state) => state.cart);
+  const { wishList } = useSelector((state) => state.wishList);
+  const dispatch = useDispatch();
+
   const {
     loading: loadingPiano,
     data: piano,
@@ -47,14 +58,18 @@ function ProductDetails(props) {
                   <Col>
                     <h3 className="card-title text-dark">{piano.name}</h3>
                     <h3 className="card-text text-primary">
-                      <p>${piano.unitPrice}</p>
+                      <p>${piano.unit_price}</p>
                     </h3>
                     <p className="card-text">{piano.description}</p>
-                    <Rating name="read-only" value={piano.avgRating} readOnly />
+                    <Rating
+                      name="read-only"
+                      value={piano.avg_rating}
+                      readOnly
+                    />
                   </Col>
 
                   <div className="col">
-                    {!piano.unitsInStock ? (
+                    {!piano.units_in_stock ? (
                       <OutOfStockButtons />
                     ) : (
                       <div>
@@ -65,7 +80,7 @@ function ProductDetails(props) {
                         </Link>
                       </div>
                     )}
-                    {piano.unitsInStock ? (
+                    {piano.units_in_stock ? (
                       <div className="col mt-3">
                         <div className="input-group">
                           <span className="input-group-text" id="basic-addon1">
@@ -79,16 +94,16 @@ function ProductDetails(props) {
                             className="form-control"
                             aria-label="Quantity"
                             ref={quantityRef}
-                            max={piano.unitsInStock}
+                            max={piano.units_in_stock}
                           />
-                          {!ctx.userCart.find(
-                            (product) => product.id === piano.id
-                          ) ? (
+                          {!cart.find((product) => product.id === piano.id) ? (
                             <button
                               onClick={() => {
-                                ctx.addToCart(
-                                  piano.id,
-                                  Number(quantityRef.current.value)
+                                dispatch(
+                                  addItemToCart(
+                                    piano.id,
+                                    Number(quantityRef.current.value)
+                                  )
                                 );
                               }}
                               className="btn btn-primary mx-3 rounded-0"
@@ -97,7 +112,7 @@ function ProductDetails(props) {
                             </button>
                           ) : (
                             <button
-                              onClick={() => ctx.removeFromCart(piano.id)}
+                              onClick={() => dispatch(removeFromCart(piano.id))}
                               className="btn btn-primary mx-3 rounded-0"
                             >
                               Remove from cart
@@ -112,18 +127,20 @@ function ProductDetails(props) {
                             </span>
                           ) : (
                             <span className={styles.wishlistIconContainer}>
-                              {!ctx.userFavProducts.find(
+                              {!wishList.find(
                                 (product) => product.id === piano.id
                               ) ? (
                                 <img
-                                  onClick={() => ctx.addToWishList(piano.id)}
+                                  onClick={() =>
+                                    dispatch(addToWishList(piano.id))
+                                  }
                                   className={styles.wishlistIcon}
                                   src={emptyHeart}
                                 ></img>
                               ) : (
                                 <img
                                   onClick={() =>
-                                    ctx.removeFromWishList(piano.id)
+                                    dispatch(removeFromWishList(piano.id))
                                   }
                                   className={styles.wishlistIcon}
                                   src={filledHeart}

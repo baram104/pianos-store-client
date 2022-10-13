@@ -10,6 +10,12 @@ import useFetch from "../../hooks/useFetch";
 import filledHeart from "../../assets/filledheart.png";
 import { useContext, useEffect } from "react";
 import UserContext from "../../store/user-context";
+import { useDispatch } from "react-redux";
+import {
+  removeFromCart,
+  removeFromWishList,
+  updateCartProd,
+} from "../../store/redux-store";
 export default function Product({
   isCart,
   id,
@@ -17,12 +23,14 @@ export default function Product({
   isOnWishList,
   quantity,
 }) {
-  const {
-    removeFromWishList,
-    userFavProducts,
-    updateCartProd,
-    removeFromCart,
-  } = useContext(UserContext);
+  // const {
+  //   removeFromWishList,
+  //   userFavProducts,
+  //   updateCartProd,
+  //   removeFromCart,
+  // } = useContext(UserContext);
+
+  const dispatch = useDispatch();
 
   const {
     loading: pianoLoading,
@@ -48,26 +56,24 @@ export default function Product({
                 {piano.name}
               </Link>
             </Card.Title>
-            <Card.Text className="text-primary">
-              ${piano.unit_price || piano.unitPrice}
-            </Card.Text>
+            <Card.Text className="text-primary">${piano.unit_price}</Card.Text>
             <Card.Text>{piano.description.slice(0, 50)}...</Card.Text>
             {isRating ? (
               <Rating name="simple-controlled" />
             ) : (
               <Row className="justify-content-between">
-                {isCart && piano.unitsInStock !== 0 ? (
+                {isCart && piano.units_in_stock !== 0 ? (
                   <Col md={8} xs={8}>
                     <Form.Group>
                       <Form.Control
                         onChange={(e) =>
-                          updateCartProd(piano.id, e.target.value)
+                          dispatch(updateCartProd(piano.id, e.target.value))
                         }
                         type="number"
                         placeholder="Qty."
                         min={1}
                         value={quantity}
-                        max={piano.units_in_stock || piano.unitsInStock}
+                        max={piano.units_in_stock}
                         className="mb-3"
                       />
                     </Form.Group>
@@ -78,13 +84,13 @@ export default function Product({
                 {isOnWishList && (
                   <span className={styles.wishlistIconContainer}>
                     <img
-                      onClick={() => removeFromWishList(piano.id)}
+                      onClick={() => dispatch(removeFromWishList(id))}
                       className={styles.wishlistIcon}
                       src={filledHeart}
                     ></img>
                   </span>
                 )}
-                {!piano.unitsInStock && (
+                {!piano.units_in_stock && (
                   <div className="mb-3">
                     <OutOfStockButtons isOnWishList={isOnWishList} />
                   </div>
@@ -92,7 +98,7 @@ export default function Product({
                 {isCart ? (
                   <Col md={5}>
                     <Button
-                      onClick={() => removeFromCart(piano.id)}
+                      onClick={() => dispatch(removeFromCart(id))}
                       variant="secondary"
                     >
                       Delete

@@ -108,7 +108,7 @@ export const formInputs = {
     validations: {
       required: true,
       patternObj: {
-        pattern: /(^[A-Za-z]+$)/,
+        pattern: /(^[A-Za-z\s]+$)/,
         errorMsg: "City must contain only letters.",
       },
       minLength: 3,
@@ -122,7 +122,7 @@ export const formInputs = {
     validations: {
       required: true,
       patternObj: {
-        pattern: /(^[A-Za-z1-9]+$)/,
+        pattern: /(^[A-Za-z1-9\s]+$)/,
         errorMsg: "Street must contain only letters and numbers.",
       },
       minLength: 3,

@@ -6,22 +6,30 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../../store/user-context";
 import { useNavigate, useParams } from "react-router-dom";
 import * as api from "../../DAL/api";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCart } from "../../store/redux-store";
 
 export default function CheckoutPage() {
   const nav = useNavigate();
   const params = useParams();
   const [products, setProducts] = useState([]);
   const ctx = useContext(UserContext);
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
   const addressForm = {
     city: formInputs.city,
     street: formInputs.street,
     zipcode: formInputs.zipcode,
   };
+
   useEffect(() => {
     if (params.prodId) {
-      api.getPiano(params.prodId).then((data) => setProducts([data]));
+      api.getPiano(params.prodId).then((data) => {
+        data.quantity = 1;
+        setProducts([data]);
+      });
     } else {
-      setProducts(ctx.userCart);
+      setProducts(cart);
     }
   }, []);
 
@@ -41,7 +49,7 @@ export default function CheckoutPage() {
       nav(`/ordersummary/${res.orderId}`, {
         state: { cityValue, streetValue, zipcodeValue },
       });
-      ctx.deleteCart();
+      dispatch(deleteCart());
     }
   };
 
@@ -75,9 +83,7 @@ export default function CheckoutPage() {
                 Summary $
                 {products.reduce(
                   (total, product) =>
-                    total +
-                    Number(product.unit_price || product.unitPrice) *
-                      product.quantity,
+                    total + Number(product.unit_price) * product.quantity,
                   0
                 )}
               </h2>
