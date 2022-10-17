@@ -6,16 +6,14 @@ import Spinner from "react-bootstrap/Spinner";
 import OutOfStockButtons from "../OutOfStockButtons/OutOfStockButtons";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
-import useFetch from "../../hooks/useFetch";
 import filledHeart from "../../assets/filledheart.png";
-import { useContext, useEffect } from "react";
-import UserContext from "../../store/user-context";
 import { useDispatch } from "react-redux";
 import {
   removeFromCart,
   removeFromWishList,
   updateCartProd,
 } from "../../store/redux-store";
+import { useEffect, useState } from "react";
 export default function Product({
   isCart,
   id,
@@ -23,24 +21,20 @@ export default function Product({
   isOnWishList,
   quantity,
 }) {
-  // const {
-  //   removeFromWishList,
-  //   userFavProducts,
-  //   updateCartProd,
-  //   removeFromCart,
-  // } = useContext(UserContext);
-
   const dispatch = useDispatch();
+  const [piano, setPiano] = useState({});
+  const [loadingPiano, setLoadingPiano] = useState(true);
 
-  const {
-    loading: pianoLoading,
-    data: piano,
-    error: pianoError,
-  } = useFetch(api.getPiano, id);
+  useEffect(() => {
+    api.getPiano(id).then((data) => {
+      setLoadingPiano(false);
+      setPiano(data);
+    });
+  }, []);
 
   return (
     <Row className={`justify-content-center mt-5 ${styles.cardSize}`}>
-      {!pianoLoading ? (
+      {!loadingPiano ? (
         <Card as={Col} className={`d-flex flex-row px-0`}>
           <Card.Img
             className={styles.img}

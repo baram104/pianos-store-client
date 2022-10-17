@@ -2,12 +2,9 @@ import Badge from "react-bootstrap/Badge";
 import "./NavbarComp.css";
 import { Navbar, Container, Nav, Col, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "../../../store/user-context";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutHandler } from "../../../store/redux-store";
 function NavbarComp() {
-  const ctx = useContext(UserContext);
   const cart = useSelector((state) => state.cart);
   const userDetails = useSelector((state) => state.auth);
   const dispatch = useDispatch();

@@ -5,11 +5,9 @@ import styles from "./ProductDetails.module.css";
 import * as api from "../../DAL/api";
 import Spinner from "react-bootstrap/Spinner";
 import { Carousel, Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
-import useFetch from "../../hooks/useFetch";
-import { useContext, useRef } from "react";
-import UserContext from "../../store/user-context";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,18 +18,22 @@ import {
 } from "../../store/redux-store";
 
 function ProductDetails(props) {
+  const nav = useNavigate();
   const quantityRef = useRef(1);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const [piano, setPiano] = useState({});
+  const [loadingPiano, setLoadingPiano] = useState(true);
   const params = useParams();
-  const ctx = useContext(UserContext);
   const { cart } = useSelector((state) => state.cart);
   const { wishList } = useSelector((state) => state.wishList);
   const dispatch = useDispatch();
 
-  const {
-    loading: loadingPiano,
-    data: piano,
-    error: pianoError,
-  } = useFetch(api.getPiano, params.productId);
+  useEffect(() => {
+    api.getPiano(params.productId).then((data) => {
+      setPiano(data);
+      setLoadingPiano(false);
+    });
+  }, [params.productId]);
 
   return (
     <section className="container">
@@ -73,7 +75,9 @@ function ProductDetails(props) {
                       <OutOfStockButtons />
                     ) : (
                       <div>
-                        <Link to={`/checkout/${piano.id}`}>
+                        <Link
+                          to={isLoggedIn ? `/checkout/${piano.id}` : "/login"}
+                        >
                           <button className="btn btn-dark mt-3 rounded-0">
                             Buy it now
                           </button>
@@ -99,12 +103,18 @@ function ProductDetails(props) {
                           {!cart.find((product) => product.id === piano.id) ? (
                             <button
                               onClick={() => {
-                                dispatch(
-                                  addItemToCart(
-                                    piano.id,
-                                    Number(quantityRef.current.value)
-                                  )
-                                );
+                                {
+                                  if (!isLoggedIn) {
+                                    nav("/login");
+                                    return;
+                                  }
+                                  dispatch(
+                                    addItemToCart(
+                                      piano.id,
+                                      Number(quantityRef.current.value)
+                                    )
+                                  );
+                                }
                               }}
                               className="btn btn-primary mx-3 rounded-0"
                             >
@@ -112,7 +122,13 @@ function ProductDetails(props) {
                             </button>
                           ) : (
                             <button
-                              onClick={() => dispatch(removeFromCart(piano.id))}
+                              onClick={() => {
+                                if (!isLoggedIn) {
+                                  nav("/login");
+                                  return;
+                                }
+                                dispatch(removeFromCart(piano.id));
+                              }}
                               className="btn btn-primary mx-3 rounded-0"
                             >
                               Remove from cart
@@ -131,17 +147,25 @@ function ProductDetails(props) {
                                 (product) => product.id === piano.id
                               ) ? (
                                 <img
-                                  onClick={() =>
-                                    dispatch(addToWishList(piano.id))
-                                  }
+                                  onClick={() => {
+                                    if (!isLoggedIn) {
+                                      nav("/login");
+                                      return;
+                                    }
+                                    dispatch(addToWishList(piano.id));
+                                  }}
                                   className={styles.wishlistIcon}
                                   src={emptyHeart}
                                 ></img>
                               ) : (
                                 <img
-                                  onClick={() =>
-                                    dispatch(removeFromWishList(piano.id))
-                                  }
+                                  onClick={() => {
+                                    if (!isLoggedIn) {
+                                      nav("/login");
+                                      return;
+                                    }
+                                    dispatch(removeFromWishList(piano.id));
+                                  }}
                                   className={styles.wishlistIcon}
                                   src={filledHeart}
                                 ></img>

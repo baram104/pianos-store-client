@@ -1,14 +1,12 @@
 import FormComp from "../../Components/Form/FormComp";
 import { formInputs } from "../../DAL/data/formInputsData";
 import * as api from "../../DAL/api";
-import UserContext from "../../store/user-context";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginHandler } from "../../store/redux-store";
 export default function SignUpPage() {
   const nav = useNavigate();
-  const ctx = useContext(UserContext);
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
