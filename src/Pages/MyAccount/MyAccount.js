@@ -3,14 +3,12 @@ import FormComp from "../../Components/Form/FormComp";
 import { formInputs } from "../../DAL/data/formInputsData";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
-import { useContext, useState } from "react";
-import UserContext from "../../store/user-context";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function MyAccount() {
   const [displayWishList, setDisplayWishList] = useState(false);
-  const ctx = useContext(UserContext);
-  const userDetails = useSelector(state=>state.auth)
+  const userDetails = useSelector((state) => state.auth);
 
   const changePasswordForm = {
     oldPassword: formInputs.oldPassword,

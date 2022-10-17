@@ -1,14 +1,11 @@
-import { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Product from "../../Components/Product/Product";
 import { Link } from "react-router-dom";
-import UserContext from "../../store/user-context";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCart } from "../../store/redux-store";
 
 export default function CartPage() {
-  // const { userCart, userDetails, deleteCart } = useContext(UserContext);
   const { cart } = useSelector((state) => state.cart);
   const userDetails = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -50,7 +47,6 @@ export default function CartPage() {
                   )
                 : 0}
             </h3>
-            {/* <Link to="/checkout"> */}
             <Link to={cart.length ? "/checkout" : "#"}>
               <Button disabled={!cart.length}>Checkout</Button>
             </Link>

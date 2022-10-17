@@ -2,8 +2,7 @@ import { Container, Row, Card, Button, Col } from "react-bootstrap";
 import { formInputs } from "../../DAL/data/formInputsData";
 import Product from "../../Components/Product/Product";
 import FormComp from "../../Components/Form/FormComp";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../../store/user-context";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as api from "../../DAL/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,6 @@ export default function CheckoutPage() {
   const nav = useNavigate();
   const params = useParams();
   const [products, setProducts] = useState([]);
-  const ctx = useContext(UserContext);
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const addressForm = {

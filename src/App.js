@@ -10,17 +10,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import SignInPage from "./Pages/SignIn/SignInPage";
 import SignUpPage from "./Pages/SignUp/SignUpPage";
 import RateOrderPage from "./Pages/RateOrder/RateOrderPage";
-import { useContext } from "react";
-import UserContext from "./store/user-context";
 import Protector from "./Components/Protector/Protector";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const {
-  //   userDetails: { isLoggedIn },
-  // } = useContext(UserContext);
-  const { userCart } = useContext(UserContext);
   const userDetails = useSelector((state) => state.auth);
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarComp />

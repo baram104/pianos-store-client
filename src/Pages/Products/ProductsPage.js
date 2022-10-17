@@ -14,10 +14,7 @@ import styles from "./ProductsPage.module.css";
 import filledHeart from "../../assets/filledheart.png";
 import emptyHeart from "../../assets/emptyheart.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
 import OutOfStockButtons from "../../Components/OutOfStockButtons/OutOfStockButtons";
-import { useContext } from "react";
-import UserContext from "../../store/user-context";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -26,11 +23,13 @@ import {
   removeFromCart,
   removeFromWishList,
 } from "../../store/redux-store";
+import { useEffect, useState } from "react";
 
 export default function ProductsPage() {
+  const [categories, setCategories] = useState({ data: [], loading: true });
+  const [pianos, setPianos] = useState({ data: [], loading: true });
   const params = useParams();
   const nav = useNavigate();
-  const ctx = useContext(UserContext);
   const cartState = useSelector((state) => state.cart);
   const wishListState = useSelector((state) => state.wishList);
   const userDetails = useSelector((state) => state.auth);
@@ -44,23 +43,21 @@ export default function ProductsPage() {
     return true;
   };
 
-  let {
-    loading: loadingPianos,
-    data: pianos,
-    error: pianosError,
-  } = useFetch(api.getPianos, params.category_id, params.category_id);
+  useEffect(() => {
+    api.getCategories().then((data) => setCategories({ data, loading: false }));
+  }, []);
 
-  const {
-    loading: loadingCategories,
-    data: categories,
-    error: categoriesError,
-  } = useFetch(api.getCategories);
-
-  const {
-    loading: loadingSortedPianos,
-    data: sortedPianos,
-    error: sortedPianosError,
-  } = useFetch(api.getPianosBySort, params.sortCondition, params.sortCondition);
+  useEffect(() => {
+    if (params.sortCondition) {
+      api
+        .getPianosBySort(params.sortCondition)
+        .then((data) => setPianos({ data, loading: false }));
+    } else {
+      api
+        .getPianos(params.category_id)
+        .then((data) => setPianos({ data, loading: false }));
+    }
+  }, [params.sortCondition, params.category_id]);
 
   const onChangeFilterHandler = ({ target: { value } }) => {
     if (value === "default") {
@@ -69,17 +66,13 @@ export default function ProductsPage() {
     nav(`/products/sort/${value}`);
   };
 
-  if (!loadingSortedPianos && params.sortCondition) {
-    pianos = sortedPianos;
-  }
-
   return (
     <Container fluid className="align-items-baseline">
       <Row className="my-0">
-        {!loadingCategories ? (
+        {!categories.loading ? (
           <Col md={3} className={`${styles.categoryBg} border-end`}>
             <ListGroup variant="flush">
-              {categories.map((category) => (
+              {categories.data.map((category) => (
                 <Link
                   key={category.id}
                   to={"category/" + category.id}
@@ -116,11 +109,11 @@ export default function ProductsPage() {
               </Form.Select>
             </Col>
           </Row>
-          {!loadingPianos ? (
+          {!pianos.loading ? (
             <Row
               className={`justify-content-between flex-start justify-content-xs-center`}
             >
-              {pianos.map((piano) => (
+              {pianos.data.map((piano) => (
                 <Card
                   key={piano.id}
                   style={{ width: "20rem", height: "37rem" }}
