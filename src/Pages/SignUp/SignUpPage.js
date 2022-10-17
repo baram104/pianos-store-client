@@ -38,11 +38,14 @@ export default function SignUpPage() {
       firstName.value,
       lastName.value
     );
-    if (res) {
+    if (res.ok) {
       dispatch(loginHandler(res.username, res.firstName));
+      for (const field in signUpFormInputs) {
+        signUpFormInputs[field].value = "";
+      }
       nav("/");
     } else {
-      setError("Registration Failed");
+      setError("Email or Username already exists");
     }
     setLoading(false);
   };

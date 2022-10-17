@@ -50,8 +50,9 @@ export default function CartPage() {
                   )
                 : 0}
             </h3>
-            <Link to="/checkout">
-              <Button>Checkout</Button>
+            {/* <Link to="/checkout"> */}
+            <Link to={cart.length ? "/checkout" : "#"}>
+              <Button disabled={!cart.length}>Checkout</Button>
             </Link>
           </Col>
         </Col>
